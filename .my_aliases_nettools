@@ -1,0 +1,133 @@
+#### NMAP - Network exploration tool and security / port scanner
+
+#Show host interfaces and routes
+function scan-ifaces () { 
+sudo nmap --iflist 
+}
+
+function scan-net-discover () {
+[ "$1" != "" ] && sudo nmap -sP -vvv $1 || echo "Usage: scan-net-discover [target IP / host]"
+}
+
+#Fastest way to scan all your devices/computers for open ports
+function scan-net-discover-fast () {
+[ "$1" != "" ] && sudo nmap -T5 -vvv $1 || echo "Usage: scan-net-discover-slow [target IP / host]"
+}
+
+#Find out the most commonly used TCP ports using TCP SYN Scan
+function scan-tcp-syn () {
+[ "$1" != "" ] && sudo nmap -sS -vvv $1 || echo "Usage: scan-tcp-syn [target IP / host]"
+}
+
+#Scan a host for UDP services
+function scan-udp () {
+[ "$1" != "" ] && sudo nmap -sU -vvv $1 || echo "Usage: scan-udp [target IP / host]"
+}
+
+#Show remote services (server / daemon) version numbers
+function scan-services () {
+[ "$1" != "" ] && sudo nmap -sV -vvv $1 || echo "Usage: scan-services [target IP / host]"
+}
+
+#Scan a firewall for security weakness
+function scan-tcp-null () {
+[ "$1" != "" ] && sudo nmap -sN -vvv $1 || echo "Usage: scan-tcp-null [target IP / host]"
+}
+
+#Scan a firewall for security weakness
+function scan-tcp-fin () {
+[ "$1" != "" ] && sudo nmap -sF -vvv $1 || echo "Usage: scan-tcp-fin [target IP / host]"
+}
+
+#Scan a firewall for security weakness
+function scan-tcp-xmas () {
+[ "$1" != "" ] && sudo nmap -sX -vvv $1 || echo "Usage: scan-tcp-xmas [target IP / host]"
+}
+
+#Scan a firewall for MAC address spoofing
+function scan-fw-mac () {
+[ "$1" != "" ] && sudo nmap -v -sT -Pn --spoof-mac $1 $2 -vvv || echo "Usage: scan-fw-mac [MAC - IP Address]"
+}
+
+function scan-dns-bruteforce () {
+[ "$1" != "" ] && sudo nmap --traceroute --script traceroute-geolocation.nse -p 80 -vvv $1 || echo "Usage: scan-dns-bruteforce [target IP / host]"
+}
+
+function scan-geolocation () {
+[ "$1" != "" ] && sudo nmap -p 80 --script dns-brute.nse -vvv $1 || echo "Usage: scan-geolocation [target IP / host]"
+}
+
+#Verbose output, runs stealth syn scan, T4 timing, OS and version detection and full port range scan
+function scan-T4-full () {
+[ "$1" != "" ] && sudo nmap -v -p 1-65535 -sV -O -sS -T4 $1 || echo "Usage: scan-geolocation [target IP / host]"
+}
+
+function scan-wtor () {
+[ "$1" != "" ] && sudo nmap --proxy socks4://127.0.0.1:9050 -vvv $1 || echo "Usage: scan-wtor [target IP / host]"
+}
+
+function scan-whois () {
+[ "$1" != "" ] && sudo nmap -p 80 --script whois-domain.nse -vvv $1 || echo "Usage: scan-whois [host]"
+}
+
+function scan-whois-ip () {
+[ "$1" != "" ] && sudo nmap -p 80 --script whois-ip.nse -vvv $1 || echo "Usage: scan-whois-ip [target IP Address]"
+}
+
+function scan-smtp () {
+[ "$1" != "" ] && sudo nmap -p 25 --script=smtp-commands.nse -vvv $1 || echo "Usage: scan-smtp [SMTP Server]"
+}
+
+function scan-mysql () {
+[ "$1" != "" ] && sudo nmap -p 3306 --script=mysql-info.nse -vvv $1 || echo "Usage: scan-mysql [MySQL Server]"
+}
+
+#Show all packets sent and received
+function scan-packet-trace () {
+[ "$1" != "" ] && sudo nmap --packet-trace -vvv $1 || echo "Usage: scan-packet-trace [target IP / host]"
+}
+
+function scan-OS-guest () {
+[ "$1" != "" ] && sudo nmap -sSU -p- -Pn -O --osscan-guess -vvv $1 || echo "Usage: scan-OS-guest [target IP / host]"
+}
+
+#Scans for http/https servers on port 80, 443 and pipes into Nikto for scanning
+function scan-nmap-nikto () {
+[ "$1" != "" ] && sudo nmap -p80,443 $1 -oG - | sudo /usr/bin/nikto -h - || echo "Usage: scan-nmap-nikto [LAN RANGE/MASK]"
+}
+
+##
+#### Tshark - Dump and analyze network traffic
+##
+
+#Capture ".pcap" packets
+function tcap () {
+[ "$1" != "" ] && sudo tshark -i $1 -w $2.pcap || echo "Usage: t-cap [iface - target_file]"
+}
+
+#Read .pcap packets
+function rcap () {
+[ "$1" != "" ] && tshark -r $1 || echo "Usage: r-cap [file.pcap]"
+}
+
+#HTTP Analysis with Tshark
+function webcap () {
+[ "$1" != "" ] && tshark -i $1 -Y http.request -T fields -e http.host -e http.user_agent -w $2.pcap || echo "Usage: web-cap [iface - target_file]"
+}
+
+#HTTP filters in Analysis of a .pcap file
+function rweb-cap () {
+[ "$1" != "" ] && tshark -r $1 -Y http.request -T fields -e http.host -e ip.dst -e http.request.full_uri || echo "Usage: r-web-cap [file.pcap]"
+}
+
+#DNS Analysis with Tshark
+function tdns-cap () {
+[ "$1" != "" ] && tshark -i $1 -f "src port 53" -n -T fields -e dns.qry.name -e dns.resp.addr -w $2.pcap || echo "Usage: t-dns-cap [iface -target_file]"
+}
+
+#Capturing plain/text passwords
+function tpwd-cap () {
+[ "$1" != "" ] && tshark -i $1 -Y 'http.request.method == POST and tcp contains "password"' | grep password -w $2.pcap || echo "Usage: t-pwd-cap [iface -target_file]"
+}
+
+
