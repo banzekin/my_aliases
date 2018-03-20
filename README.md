@@ -14,7 +14,7 @@ Run the installation script <i>"install.sh"</i>,
 2. Make a directory called ".my_aliases_data" and put the rest of the files into it
 
 3. Then add into your .bashrc file profile
-<bloquote><pre>
+
 if [ -f ~/.my_aliases ]; then
     . ~/.my_aliases
 fi
@@ -34,7 +34,7 @@ fi
 if [ -f ~/.my_aliases_data/.media ]; then
     . ~/.my_aliases_data/.media
 fi
-</bloquote></pre>
+
 4. Finally reload the shell
 
 
