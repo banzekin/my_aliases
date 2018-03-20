@@ -1,0 +1,31 @@
+####
+## Firewalling related aliases
+####
+
+alias ufw_on='sudo ufw enable'
+alias ufw_off='sudo ufw disable'
+alias ufw_status='sudo ufw status numbered'
+
+####
+## Advanced UFW control
+####
+
+# Allow connections from an IP address / subnet or host
+function ufw_allow () {
+[ "$1" != "" ] && sudo ufw allow from $1 || echo "Usage: ufw_allow [IP Address]"
+}
+
+# Block or deny all packets from a IP adress / subnet or host
+function ufw_block () {
+[ "$1" != "" ] && sudo ufw deny from $1 to any || echo "Usage: ufw_block [IP Address]"
+}
+
+# Block or deny all packets from a IP address to a specific port
+function ufw_block_port () {
+[ "$1" != "" ] && sudo ufw deny from $1 to any port $2 || echo "Usage: ufw_block_port [IP Address / Port]"
+}
+
+# Using ufw to block outgoing traffic to website, IP Address or subnet
+function ufw_out_block () {
+[ "$1" != "" ] && sudo ufw deny out from any $1 || echo "Usage: ufw_out_block [IP Address]"
+}

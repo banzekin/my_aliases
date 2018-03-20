@@ -1,0 +1,305 @@
+##
+#### Main aliases
+##
+alias ?='man' # haha
+alias ??='info'
+alias ???='whatis'
+alias cls='clear'
+alias show-history='history | grep -i'
+alias export-history='history -a'
+alias import-history='history -n'
+
+#
+# Files and Directories
+alias count-all-files='ls | wc -l'
+alias list-all-files='ls -al --time-style=+%D | grep `date +%D`'
+alias list-files-MB='du -sch *'
+alias list-long-names='ls -lhXG'
+alias lb='lsblk'
+alias finder='find -iname'
+alias remove-m='sed -i "s/\r$//g"'
+alias no-comments='grep ^[^\;]' # View configuration files without comments.
+alias no-comments#='grep ^[^#]' # View configuration files without comments.
+alias MD5-dir='find . -type f -exec md5sum {} \;'
+alias rows-example='seq 1 31 | paste -s -d "\t\t\t\n" -'
+alias rows-4='pr -T -4'
+alias rows-2='pr -T -2'
+alias svi='sudo vi'
+alias sge='sudo gedit'
+alias permission='stat -c "%a %U %G %n"' # Check permissions of a folder.
+alias rw-='chmod 600'
+alias rwx='chmod 700'
+alias r--='chmod 644'
+alias r-x='chmod 755'
+alias less='less -S --tabs=4'
+alias ..='cd ../'
+alias ...='cd ../..'
+alias doc='cd ~/Documents'
+alias books='cd ~/Documents/Books'
+alias down='cd ~/Downloads'
+alias media='cd ~/media'
+alias vids='cd ~/Videos'
+alias dbox='cd ~/Dropbox'
+alias music='cd ~/Music'
+alias work='cd ~/Work'
+alias flux='cd ~/Work/fluxion'
+alias handshakes='~/Work/fluxion/attacks/Handshake\ Snooper/handshakes'
+alias dic='cd ~/Work/dic/'
+alias games='cd ~/Games/'
+
+#
+# System Resources & Process aliases
+alias zombie-finder='ps aux | grep +z | grep +Z'
+alias kll='sudo kill -s 9'
+alias show-consume-mem='ps aux | sort -nrk 4 | head'
+alias show-proccol='ps aux | lolcat' # You need to install lolcat package.
+alias fmem='watch -d free'
+alias fmem-proc='ps aux --width 30 --sort -rss | head'
+alias fmem-tproc='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head' # Check top processes sorted by RAM or CPU usage.
+alias fmem-info='free -m -l -t -h'
+alias disk-info='sudo fdisk -l'
+alias check-running-apps='sudo lsof -i' # Check running applications/services.
+alias CPU='prtstat $$'
+alias t10='top -n 10'
+alias t5-save='top -b -n 5 > top-5proc.txt'
+
+#
+# User(s) status aliases
+alias usrs-l='lslogins' # Show information about known users.
+alias usrs-l2='w -i'
+
+#
+# Mount aliases
+alias external-off='sudo umount /dev/sdb1'
+alias external-on='sudo mount /dev/sdb1 /home/banzekin/media'
+alias w7-on='sudo mount /dev/sda2 /mount/windows7'
+alias w7-off='sudo umount /dev/sda2'
+alias mount-cd='sudo mount -o loop'
+alias make-iso-folder='mkisofs -o image.iso -R'
+
+#
+# MISC alias
+alias show-distro-version='cat /etc/lsb-release'
+alias restart-sound-daemon='sudo alsa force-reload'
+alias kill-lighttpd='sudo killall lighttpd'
+alias create-desktop-link='gnome-desktop-item-edit ~/Desktop --create-new'
+alias restart-xfce4='xfce4-session-logout'
+alias transmission='DISPLAY=:0 exec /usr/bin/transmission-gtk &'
+alias mini-term='xterm -hold -bg black -geometry 100x27-0-0 -fg "#99CCFF" -title "Mini-term" &' # "xterm" is needed.
+
+#
+# Aliases update
+alias alias-update='source ~/.bashrc'
+
+#
+# Youtube Downloader (you should install youtube-dl)
+alias mp4='youtube-dl -f 18 --quiet --restrict-filename --no-playlist --no-check-certificate'
+alias youtube-mp4-best-quality='youtube-dl -f 22 --quiet --restrict-filename --no-playlist --no-check-certificate'
+alias youtube-best-quality='youtube-dl -f bestvideo'
+alias mp3='youtube-dl --extract-audio --audio-format mp3 --audio-quality 0'
+
+#
+# Google Translator (you need to download the shell translator)
+alias en-es='~/Work/tools/translate/trans -brief -s en -t es'
+alias es-en='~/Work/tools/translate/trans -brief -s es -t en'
+alias en-se='~/Work/tools/translate/trans -brief -s en -t sw'
+alias se-en='~/Work/tools/translate/trans -brief -s sw -t en'
+
+#
+# RECORD all activity in a text file
+alias recterm='script ~/Work/record.txt'
+
+##
+#### Shutdown by time
+##
+alias shut130am='sudo shutdown -P 1:30 "The server is shutting down, please save your work and log off."'
+alias shut230am='sudo shutdown -P 2:30 "The server is shutting down, please save your work and log off."'
+alias shut330am='sudo shutdown -P 3:30 "The server is shutting down, please save your work and log off."'
+
+##
+#### System Security Commands
+##
+alias av-scan='sudo clamscan --infected --remove --recursive /home' # You need to install clamav.
+alias rootkit-scan='sudo rkhunter --checkall' # rkhunter is needed.
+alias rootkit-update='sudo rkhunter --propupd'
+alias rootkit-check-log='sudo cat /var/log/rkhunter.log | grep -i warning'
+alias check-rootkits='sudo chkrootkit | sudo tee /var/log/chkrootkit/chkrootkit.log' # You need to install chkrootkit.
+alias update-lynis='lynis update info' # You need to install lynis.
+alias audit-lynis='sudo lynis audit system'
+alias show-lynis-log='sudo cat /var/log/lynis-report.dat | grep suggestion'
+alias audit-tiger='sudo tiger' # You need to install tiger.
+alias armor='sudo apparmor_status'
+alias gen-random-passwd='makepasswd --chars=32'
+
+##
+#### Logging Related Aliases
+##
+alias view-syslog='lnav /var/log/syslog' # lnav package is needed.
+alias view-syslog2='head /var/log/syslog'
+alias view-auth-logs='lnav /var/log/auth.log'
+alias view-firewall-logs='lnav /var/log/ufw.log'
+alias view-kern-logs='lnav /var/log/kern.log'
+alias clean-old-logs='sudo rm /var/log/*.gz | sudo rm /var/log/*.1 | sudo rm /var/log/*.old'
+alias view-systemctl-logs='sudo journalctl -b0 --since today'
+alias view-systemctl-logs-notice='sudo journalctl -b --since today -p 5'
+alias view-shrink-logs='sudo journalctl --vacuum-size=10M'
+alias view-logwatch='sudo logwatch | less' # You need to install logwatch.
+alias view-firewall-logs2='fwlogwatch -t -b -n -W' # You need to install fwlogwatch.
+alias show-syslog='xterm -hold -bg black -geometry 100x27-0-0 -fg "#99CCFF" -title "SYSLOG Terminal" -e tail -f /var/log/syslog &'
+alias show-bind9log='xterm -hold -bg black -geometry 100x27-0+0 -fg "#99CCFF" -title "BIND9 logging Terminal" -e tail -f /var/log/named/queries.log &'
+
+##
+#### System Commands
+##
+
+# Ubuntu/Debian system update aliases
+alias update='sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y'
+alias update2='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y'
+alias apt-get='sudo apt-get'
+
+#
+# Package(s) administration commands
+alias show-packages='sudo apt --installed list'
+alias show-package-info='apt-cache show'
+alias show-installed-packages='apt list --installed'
+alias show-installed-kernels='dpkg --list | grep linux-image'
+alias remove-old-kernel='sudo aptitude purge'
+alias purge-package='sudo apt-get --purge remove -y'
+#
+alias show-services-status='sudo systemctl list-unit-files'
+alias show-services-timing='sudo systemd-analyze blame'
+
+#
+# Hardware and Video information
+alias show-hardware='inxi -SGADIPMnN'
+alias check-cpu-temperature='acpi -t'
+alias show-opengl-version='glxinfo | grep OpenGL' # You need to install glxinfo
+alias show-display-resolution='xrandr --query'
+alias show-display_ID-connected='xrandr -q | grep " connected"'
+alias show-ID-screen='xrandr --listmonitors'
+alias videoinfo='grep -i --color Video /var/log/Xorg.0.log'
+alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
+
+#### Compress and Extract files from different formats
+function tgz() {
+        [ "$1" != "" ] && tar -czRf $1.tar.gz $1 && echo "$1.tar.gz created successfully!"|| echo "Usage: tgz [folder_or_file]"
+}
+
+function bz2() {
+        [ "$1" != "" ] && tar -cjRf $1.tar.bz2 $1 && echo "$1.tar.bz2 created successfully!" || echo "Usage: bz2 [folder_or_file]"
+}
+
+function tar() {
+        [ "$1" != "" ] && tar -xvf $1 || echo "Usage: tar [tar_file_name]"
+}
+
+function extract() {
+    if [ -f $1 ] ; then
+      case $1 in
+        *.tar.bz2)   tar xjf $1     ;;
+        *.tar.gz)    tar xzf $1     ;;
+        *.bz2)       bunzip2 $1     ;;
+        *.rar)       unrar e $1     ;;
+        *.gz)        gunzip $1      ;;
+        *.tar)       tar xf $1      ;;
+        *.tbz2)      tar xjf $1     ;;
+        *.tgz)       tar xzf $1     ;;
+        *.zip)       unzip $1       ;;
+        *.Z)         uncompress $1  ;;
+        *.7z)        7z x $1        ;;
+        *)     echo "'$1' cannot be extracted via extract()" ;;
+         esac
+     else
+         echo "'$1' is not a valid file"
+     fi
+}
+
+#### Advanced PS
+function ps? () {
+        echo "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND"
+        ps aux | grep $1
+}
+
+#### mkdir function
+function mkcd() {
+mkdir $1 cd $1
+}
+
+#### Count all file(s) from a directory
+function count-files () {
+find $1 -type f -exec ls -l {} \; | wc -l
+}
+
+#### History of max commands used
+function hmax () {
+history | awk '{print $2}' | sort | uniq -c | sort -rn | head
+}
+
+#### Show current LAN and WAN IP
+function IP_WAN () {
+IP_WAN=$(wget -qO- http://ipecho.net/plain ; echo)
+IP_LAN=$(/sbin/ifconfig | grep Bcast | awk '{print $2}' | cut -d":" -f 2)
+
+if [ $IP_WAN eq ""]; then IP_WAN="Not assigned"
+fi
+
+echo "============================================="
+echo "WAN : $IP_WAN"
+echo "LAN:  $IP_LAN"
+echo "============================================="
+}
+
+#### DNS cache flush
+function flush-dns () {
+sudo /etc/init.d/dns-clean restart
+sudo /etc/init.d/networking force-reload
+sudo /etc/init.d/nscd restart
+# If you wanted to refresh your settings you could disable and then run
+sudo service network-manager restart
+
+echo "DNS Flushed!";
+}
+
+### DNS Query lookup
+function ns1 () {
+nslookup -q=any $1
+nslookup -q=soa $1
+dig -x $1
+}
+
+#### System backup
+function do_backup () {
+TIMESTAMP=`date +%Y%m%d.%H%M`                                   #timestamp file is on
+DEST_DIR="/home/$USER/Dropbox/Backup"                           #destination directory
+SRC_DIR="/etc /var/log /var/www/html /var/spool/cron"           #directories to backup
+FNAME="sysbackup"                                               #destination file name
+LOG="/home/$USER/Work/$FNAME-$TIMESTAMP.log"                    #log file destination
+echo -e "Starting backup of $SRC_DIR directory" >> ${LOG}
+sudo tar -vczPf ${DEST_DIR}/${FNAME}-${TIMESTAMP}.tar.gz ${SRC_DIR} >> ${LOG}
+echo -e "Backup done of $SRC_DIR" >> ${LOG}
+}
+
+#### List an installed package by name
+showpkg () {
+  apt-cache pkgnames | grep -i "$1" | sort
+  return;
+}
+
+#### Shows uptime using a shorter formula
+myuptime () {
+  uptime | awk '{ print "Uptime:", $3, $4, $5 }' | sed 's/,//g'
+  return;
+}
+
+#### Remove audio from video
+# $1 = source file
+# $2 = destination
+# Example: removeaudio myvideo.webm myvideo-silent.mp4
+removeaudio() {
+  ffmpeg -i $1 -vcodec copy -an $2
+}
+
+### Fun command (You should install "cowsay" and "fortune")
+function cow_loop () {
+commands=(cow{say,think}); while [ "rainbows are delightful" ]; do (fortune | ${commands[$RANDOM % ${#commands[@]}]} -f $(cowsay -l | tail -n+2 | xargs -n 1 | sort -R | head -n 1) | lolcat -a ) && sleep 5 && clear; done
+}

@@ -1,0 +1,44 @@
+alias vid-info='ffmpeg -i -hide_banner' # Getting info from a video file
+alias play-video='ffplay $1'
+alias webcam-vlc='vlc v4l2:///dev/video0' # Running my laptop webcam to VLC
+
+# Turn a video to "X" images
+function vid-to-images () {
+[ "$1" != "" ] && ffmpeg -i $1 image%d.jpg || echo "Usage: vid-to-images [video file]"
+}
+
+# Extract sound from a video, and save it as MP3
+function vid-extract-audio () {
+[ "$1" != "" ] && ffmpeg -i $1 -vn -ar 44100 -ac 2 -ab 192k -f mp3 $2 || echo "Usage: vid-extr-audio [source video file - target audio file]"
+}
+
+# Convert .avi to .mpg
+function vid-avi-mpg () {
+[ "$1" != "" ] && ffmpeg -i $1 $2.mpg || echo "Usage: vid-avi-mpg [source video - target video]"
+}
+
+# Convert video to animated gif(uncompressed)
+function vid-to-gif () {
+[ "$1" != "" ] && ffmpeg -i $1 $2.gif || echo "Usage: vid-to-gif [source video - target 'no extension needed']"
+}
+
+# Convert video to mpeg for dvd players
+function vid-to-dvd () {
+[ "$1" != "" ] && ffmpeg -i $1 -target pal-dvd -ps 2000000000 -aspect 16:9 $2.mpeg || echo "Usage: vid-to-dvd [source video - target 'no extension needed']"
+}
+
+# Stream a playlist in vl (vaughnlive.tv)
+## $1 - playlist // $2 key
+function go-stream () {
+[ "$1" != "" ] && ffmpeg -f concat -safe 0 -i $1 -s 640x360 -r 25 -b:v 900k -vcodec libx264 -f flv $2 || echo "Usage: go-stream [playlist - vaughnlive key]"
+}
+
+# Grab the desktop
+function record-desktop () {
+[ "$1" != "" ] && ffmpeg -y -f alsa -i hw:0 -f x11grab -framerate 30 -video_size 1280x800 -i :0.0+0,0 -c:v libx264 -pix_fmt yuv420p -qp 0 -preset ultrafast $1 || echo "Usage: record-desktop [target file]"
+}
+
+# Capturing video from webcam and saving to a file
+function record-webcam () {
+[ "$1" != "" ] && ffmpeg -f oss -i /dev/dsp -f video4linux2 -s 640x480 -i /dev/video0 $1 || echo "Usage: record-webcam [target file]"
+}
