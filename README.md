@@ -15,7 +15,7 @@ Run the installation script <i>"install.sh"</i>,
 
 3. Then add into your .bashrc file profile
 
-if [ -f ~/.my_aliases ]; then
+<TT>if [ -f ~/.my_aliases ]; then
     . ~/.my_aliases
 fi
 
@@ -33,7 +33,7 @@ fi
 
 if [ -f ~/.my_aliases_data/.media ]; then
     . ~/.my_aliases_data/.media
-fi
+fi</TT>
 
 4. Finally reload the shell
 
