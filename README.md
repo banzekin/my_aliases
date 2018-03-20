@@ -17,11 +17,10 @@ Run the installation script <i>"install.sh"</i>,
 
 <TT>if [ -f ~/.my_aliases ]; then
     . ~/.my_aliases
-fi
-
-if [ -f ~/.my_aliases_data/.networking ]; then
+fi</TT>
+<TT>if [ -f ~/.my_aliases_data/.networking ]; then
     . ~/.my_aliases_data/.networking
-fi
+fi</TT>
 
 if [ -f ~/.my_aliases_data/.fw_rules ]; then
     . ~/.my_aliases_data/.fw_rules
