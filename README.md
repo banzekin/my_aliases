@@ -9,7 +9,7 @@ Open a new shell and run the installation script <i>"install.sh"</i>,
 <TT>chmod +x install.sh && ./install.sh</TT>
 
 ## Manual installation
-1. Copy <i>.my_aliases file</i> to your home root folder "~/.".
+1. Copy <i>.my_aliases</i> file to your home root folder "~/.".
 
 2. Make a directory called "<i>.my_aliases_data</i>" and place the rest of the files into it
 
