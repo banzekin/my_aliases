@@ -14,13 +14,14 @@ Run the installation script <i>"install.sh"</i>,
 2. Make a directory called ".my_aliases_data" and put the rest of the files into it
 
 3. Then add into your .bashrc file profile
-
-<TT>if [ -f ~/.my_aliases ]; then
+<bloquote><pre>
+if [ -f ~/.my_aliases ]; then
     . ~/.my_aliases
-fi</TT>
-<TT>if [ -f ~/.my_aliases_data/.networking ]; then
+fi
+
+if [ -f ~/.my_aliases_data/.networking ]; then
     . ~/.my_aliases_data/.networking
-fi</TT>
+fi
 
 if [ -f ~/.my_aliases_data/.fw_rules ]; then
     . ~/.my_aliases_data/.fw_rules
@@ -32,8 +33,8 @@ fi
 
 if [ -f ~/.my_aliases_data/.media ]; then
     . ~/.my_aliases_data/.media
-fi</TT>
-
+fi
+</bloquote></pre>
 4. Finally reload the shell
 
 
