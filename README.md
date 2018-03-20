@@ -11,7 +11,7 @@ Run the installation script <i>"install.sh"</i>,
 # Manual installation
 1. Copy .my_aliases to your home root folder.
 
-2. Make a directory called ".my_aliases_data" and put the rest of the files into it
+2. Make a directory called ".my_aliases_data" and place the rest of the files in it
 
 3. Then add into your .bashrc file profile
 
