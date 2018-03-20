@@ -1,14 +1,14 @@
-# my_aliases - Bash aliases compilation
+## my_aliases - Bash aliases compilation
 *"useful bash aliases and functions"*
 
 <b>You can pull requests if you have any useful aliases or functions to make things more easy.</b>
 
-# How to install the script and use it
+## How to install the script and use it
 Run the installation script <i>"install.sh"</i>,
 
 <TT>chmod +x install.sh && ./install.sh</TT>
 
-# Manual installation
+## Manual installation
 1. Copy .my_aliases to your home root folder.
 
 2. Make a directory called ".my_aliases_data" and put the rest of the files into it
