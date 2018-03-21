@@ -1,5 +1,5 @@
 ## my_aliases - Bash Aliases Script
-*"a set of useful bash aliases and function compilations"*
+*"a set of useful bash aliases and function compilation"*
 
 <b>You can pull requests if you have any useful aliases or functions to make things more easy.</b>
 
