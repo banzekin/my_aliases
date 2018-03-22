@@ -21,7 +21,7 @@ example the update system aliases was made to be compatible with Debian and/or U
 
 ## How to install the script
 ## a) Automatic Installation
-Open a new terminal and download the script using <i>git command<i>: 
+Open a new terminal and download the script using <i>git command</i>: 
 
 <code>git clone https://github.com/banzekin/my_aliases.git</code> 
 
