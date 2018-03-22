@@ -1,7 +1,7 @@
 ## my_aliases - Bash Alias Script
 *"a set of useful bash alias and functions compilation"*
 
-## What do I need to use the script?
+###What do I need to use the script?
 First you need is to get installed Linux and you should use <i>BASH</i> as default shell.
 
 Why BASH Shell?
@@ -10,23 +10,22 @@ powerful tool for the advanced and professional user. This shell is a so-called 
 a set of add-ons and plug-ins. This means that the Bourne Again shell is compatible with the Bourne shell:
 commands that work in <i>sh</i>, also work in <i>bash</i>.
 
-## What is an alias?
+###What is an alias?
 <i>Aliases</i> allow a string to be substituted for a word when it is used as the first word of a simple command.
 The shell maintains a list of aliases that may be set and unset with the alias and unalias commands.
 
-## Compatibility
+###Compatibility
 The script is compatible with any Linux distribution that uses BASH as default shell but I've made this script under
 Ubuntu Linux so if you're using another Linux distribution probably you want to make some changes in some aliases for
 example the update system aliases was made to be compatible with Debian and/or Ubuntu.
 
-## How to install the script
-###a) Automatic Installation
-
+###How to install the script
+####a) Automatic Installation
 Open a new terminal then run the installation script file <i>"install.sh"</i>:
 
 <TT>chmod +x install.sh && ./install.sh</TT>
 
-### b) Manual Installation
+####b) Manual Installation
 If you want to install the script by yourself you should make the following steps:
 
 1. Unpack all files
@@ -39,9 +38,7 @@ If you want to install the script by yourself you should make the following step
 <TT><i>cp .my_aliases ~/</i></TT>
 
 4. Make a directory called "<i>.my_aliases_data</i>" and place the rest of the files into it
-
 <TT><i>mkdir ~/.my_aliases_data</i></TT>
-
 <TT><i>cp .networking ~/.my_aliases_data && cp .fw_rules ~/.my_aliases_data && cp .media ~/.my_aliases_data
 cp .scantools_alias ~/.my_aliases_data && cp .banner ~/my_aliases_data</i></TT>
 
