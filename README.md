@@ -12,12 +12,11 @@ commands that work in <i>sh</i>, also work in <i>bash</i>.
 The shell maintains a list of aliases that may be set and unset with the alias and unalias commands.
 
 ## What do I need to use the script?
-You need to get installed Linux and you should use <i>BASH</i> as default shell.
+A Linux distro and you should use <i>BASH</i> as default shell.
 
 ## Compatibility
-The script is compatible with any Linux distribution that uses BASH as default shell but I've made this script under
-Ubuntu Linux so if you're using another distro probably you want to make some changes for example the update system 
-aliases was made to be compatible with Debian and/or Ubuntu.
+The script is compatible with any Linux distribution that supports BASH but I've made this script under
+Ubuntu so if you're working with another distro you probably need to make some changes.
 
 ## How to install the script
 ## a) Automatic Installation
