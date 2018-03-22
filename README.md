@@ -12,7 +12,7 @@ commands that work in <i>sh</i>, also work in <i>bash</i>.
 The shell maintains a list of aliases that may be set and unset with the alias and unalias commands.
 
 ## What do I need to use the script?
-First you need is to get installed Linux and you should use <i>BASH</i> as default shell.
+You need to get installed Linux and you should use <i>BASH</i> as default shell.
 
 ## Compatibility
 The script is compatible with any Linux distribution that uses BASH as default shell but I've made this script under
