@@ -20,13 +20,13 @@ Ubuntu Linux so if you're using another Linux distribution probably you want to 
 example the update system aliases was made to be compatible with Debian and/or Ubuntu.
 
 ## How to install the script
-a) Automatic Installation
+###a) Automatic Installation
 
 Open a new terminal then run the installation script file <i>"install.sh"</i>:
 
 <TT>chmod +x install.sh && ./install.sh</TT>
 
-## b) Manual Installation
+### b) Manual Installation
 If you want to install the script by yourself you should make the following steps:
 
 1. Unpack all files
