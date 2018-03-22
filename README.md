@@ -86,4 +86,4 @@ fi
 
 ## Disclaimer
 
-The usage of some commands and/or applications such as NMAP, Fluxion, TShark, linset or Aircrack-ng for attacking infrastructures without prior mutual consent could be considered an illegal activity, and is highly discouraged by the author of the script and Third Party authors/developers. It is the end user's responsibility to obey all applicable local, state and federal laws. The Author of the script and Third Party Authors assume no liability and are not responsible for any misuse or damage caused by this program.
+The usage of some commands and/or applications such as Fluxion, TShark, NMAP, linset or Aircrack-ng for attacking third party infrastructures without prior mutual consent could be considered an illegal activity, and is highly discouraged by the author of the script. It is the end user's responsibility to obey all applicable local, state and federal laws. The Author of the script and assume no liability and are not responsible for any misuse or damage caused by this program. For additional information read CODE_OF_CONDUCT file http://contributor-covenant.org/version/1/4.
