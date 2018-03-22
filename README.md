@@ -45,9 +45,9 @@ If you want to install the script by yourself you should perform the following s
 
 3. Make a directory called "<i>.my_aliases_data</i>" and place the rest of files in it:
 
-<code><i>mkdir ~/.my_aliases_data</i></code>
+a) <code><i>mkdir ~/.my_aliases_data</i></code>
 
-<code>cp .networking ~/.my_aliases_data && cp .fw_rules ~/.my_aliases_data && cp .media ~/.my_aliases_data
+b) <code>cp .networking ~/.my_aliases_data && cp .fw_rules ~/.my_aliases_data && cp .media ~/.my_aliases_data
 cp .scantools_alias ~/.my_aliases_data && cp .banner ~/my_aliases_data</code>
 
 4. Edit your <i>.bashrc</i> file and add the following text:
