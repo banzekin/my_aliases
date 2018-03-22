@@ -21,6 +21,7 @@ example the update system aliases was made to be compatible with Debian and/or U
 
 ## How to install the script
 a) Automatic Installation
+
 Open a new terminal then run the installation script file <i>"install.sh"</i>:
 
 <TT>chmod +x install.sh && ./install.sh</TT>
