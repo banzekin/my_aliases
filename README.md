@@ -38,6 +38,7 @@ If you want to install the script by yourself you should make the following step
 <TT><i>cp .my_aliases ~/</i></TT>
 
 4. Make a directory called "<i>.my_aliases_data</i>" and place the rest of the files into it
+
 <TT><i>mkdir ~/.my_aliases_data</i></TT>
 <TT><i>cp .networking ~/.my_aliases_data && cp .fw_rules ~/.my_aliases_data && cp .media ~/.my_aliases_data
 cp .scantools_alias ~/.my_aliases_data && cp .banner ~/my_aliases_data</i></TT>
