@@ -39,13 +39,13 @@ If you want to install the script by yourself you should perform the following s
 3. Copy <i>.my_aliases</i> file to your home root directory "~/.".
 <code>cp .my_aliases ~/</code>
 
-4. Make a directory called "<i>.my_aliases_data</i>" and place the rest of files in it
+4. Make a directory called "<i>.my_aliases_data</i>" and place the rest of files in it:
 <code><i>mkdir ~/.my_aliases_data</i></code>
 
 <code>cp .networking ~/.my_aliases_data && cp .fw_rules ~/.my_aliases_data && cp .media ~/.my_aliases_data
 cp .scantools_alias ~/.my_aliases_data && cp .banner ~/my_aliases_data</code>
 
-5. Edit your <i>.bashrc</i> file and add the following text
+5. Edit your <i>.bashrc</i> file and add the following text:
 <code>
 
 if [ -f ~/.my_aliases ]; then
@@ -69,5 +69,5 @@ if [ -f ~/.my_aliases_data/.media ]; then
 fi
 
 </code>
-6. Reload the shell
+6. Reload the shell.
 <i>source ~/.bashrc</i>
