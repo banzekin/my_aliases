@@ -60,6 +60,7 @@ cp .scantools_alias ~/.my_aliases_data && cp .banner ~/my_aliases_data</code>
 <code>
 cat ~/.my_aliases_data/.banner | lolcat && ddate && echo ""
 
+
 if [ -f ~/.my_aliases ]; then
     . ~/.my_aliases
 fi
