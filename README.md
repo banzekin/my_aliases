@@ -25,7 +25,11 @@ Open a new terminal and download the script using <i>git command</i>:
 
 <code>git clone https://github.com/banzekin/my_aliases.git</code> 
 
-Next run the installation script file <i>"install.sh"</i>:
+Then: switch to script's directory
+
+<i>cd my_aliases</i>
+
+Finally run the installation script file <i>"install.sh"</i>:
 
 <code>chmod +x install.sh && ./install.sh</code>
 
