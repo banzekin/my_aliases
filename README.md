@@ -21,11 +21,11 @@ example the update system aliases was made to be compatible with Debian and/or U
 
 ## How to install the script
 ## a) Automatic Installation
-Download the script using <i>git command<i>: 
+Open a new terminal and download the script using <i>git command<i>: 
 
 <code>git clone https://github.com/banzekin/my_aliases.git</code> 
 
-Next open a new terminal then run the installation script file <i>"install.sh"</i>:
+Next run the installation script file <i>"install.sh"</i>:
 
 <code>chmod +x install.sh && ./install.sh</code>
 
