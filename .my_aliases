@@ -276,14 +276,6 @@ myuptime () {
   return;
 }
 
-#### Remove audio from video
-# $1 = source file
-# $2 = destination
-# Example: removeaudio myvideo.webm myvideo-silent.mp4
-removeaudio() {
-  ffmpeg -i $1 -vcodec copy -an $2
-}
-
 ### Fun command (You should install "cowsay" and "fortune")
 function cow_loop () {
 commands=(cow{say,think}); while [ "rainbows are delightful" ]; do (fortune | ${commands[$RANDOM % ${#commands[@]}]} -f $(cowsay -l | tail -n+2 | xargs -n 1 | sort -R | head -n 1) | lolcat -a ) && sleep 5 && clear; done
