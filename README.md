@@ -43,11 +43,13 @@ If you want to install the script by yourself you should perform the following s
 2. Copy <i>.my_aliases</i> file to your home root directory "~/.".
 <code>cp .my_aliases ~/</code>
 
-3. Make a directory called "<i>.my_aliases_data</i>" and place the rest of files in it:
+3. Make a directory called "<i>.my_aliases_data</i>":
 
-a) <code><i>mkdir ~/.my_aliases_data</i></code>
+<code><i>mkdir ~/.my_aliases_data</i></code>
 
-b) <code>cp .networking ~/.my_aliases_data && cp .fw_rules ~/.my_aliases_data && cp .media ~/.my_aliases_data
+4. Put the rest of files into "<i>.my_aliases_data</i>":
+
+<code>cp .networking ~/.my_aliases_data && cp .fw_rules ~/.my_aliases_data && cp .media ~/.my_aliases_data
 cp .scantools_alias ~/.my_aliases_data && cp .banner ~/my_aliases_data</code>
 
 4. Edit your <i>.bashrc</i> file and add the following text:
