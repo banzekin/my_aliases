@@ -22,61 +22,92 @@ function ufw_interactive () { # Alias name
 function _mainMenu() # Main menu function
 {
 clear
-  echo "1) View fw rules"
-  echo "2) Add New fw rule"
-  echo "3) Block IP Address, Subnet, Port or Interface"
-  echo "4) Remove rules"
-  echo "5) Exit"
-  echo
-  echo -n "# "
+echo
+echo "  ██╗   ██╗███████╗██╗    ██╗    ███████╗ ██████╗██████╗ ██╗██████╗ ████████╗"
+echo "  ██║   ██║██╔════╝██║    ██║    ██╔════╝██╔════╝██╔══██╗██║██╔══██╗╚══██╔══╝"
+echo "  ██║   ██║█████╗  ██║ █╗ ██║    ███████╗██║     ██████╔╝██║██████╔╝   ██║   "
+echo "  ██║   ██║██╔══╝  ██║███╗██║    ╚════██║██║     ██╔══██╗██║██╔═══╝    ██║   "
+echo "  ╚██████╔╝██║     ╚███╔███╔╝    ███████║╚██████╗██║  ██║██║██║        ██║   "
+echo "   ╚═════╝ ╚═╝      ╚══╝╚══╝     ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝   "
+echo 
+echo "._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._."
+echo ":                                                                           :"
+echo ": 1) View current firewall rules                                            :"
+echo ": 2) Add New firewall rule                                                  :"
+echo ": 3) Block IP Address, Subnet, Port or Network Interface                    :"
+echo ": 4) Remove a firewall rule                                                 :"
+echo ": 5) Exit                                                                   :"
+echo "._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._."
+echo
+echo -n "# "
 }
 
 function _submenu1()
 {
 clear
-  echo "1) Show fw rules"
-  echo "2) Show fw 'allow' rules"
-  echo "3) Show fw 'deny' rules"
-  echo "4) Back to main menu"
-  echo
-  echo -n "#: "
+echo
+echo "╦  ┬┌─┐┌┬┐  ╦═╗┬ ┬┬  ┌─┐┌─┐"
+echo "║  │└─┐ │   ╠╦╝│ ││  ├┤ └─┐"
+echo "╩═╝┴└─┘ ┴   ╩╚═└─┘┴─┘└─┘└─┘"
+echo
+echo "1) Show fw rules"
+echo "2) Show fw 'allow' rules"
+echo "3) Show fw 'deny' rules"
+echo "4) Back to main menu"
+echo
+echo -n "#: "
 }
 
 function _submenu2()
 {
 clear
-  echo "1) Add Port (TCP)"
-  echo "2) Add Port (UDP)"
-  echo "3) Add Port Range (TCP)"
-  echo "4) Add Port Range (UDP)"
-  echo "5) Add IP Address or Subnet"
-  echo "6) Add IP Address or Subnet to specific port"
-  echo "7) Add Specific Network Interface to port"
-  echo "8) Back to main menu"
-  echo
-  echo -n "#: "
+echo
+echo "╔═╗┌┬┐┌┬┐  ╦═╗┬ ┬┬  ┌─┐┌─┐"
+echo "╠═╣ ││ ││  ╠╦╝│ ││  ├┤ └─┐"
+echo "╩ ╩─┴┘─┴┘  ╩╚═└─┘┴─┘└─┘└─┘"
+echo
+echo "1) Add Port (TCP)"
+echo "2) Add Port (UDP)"
+echo "3) Add Port Range (TCP)"
+echo "4) Add Port Range (UDP)"
+echo "5) Add IP Address or Subnet"
+echo "6) Add IP Address or Subnet to specific port"
+echo "7) Add Specific Network Interface to port"
+echo "8) Back to main menu"
+echo
+echo -n "#: "
 }
 
 function _submenu3()
 {
 clear
-  echo "1) Block Port"
-  echo "2) Block IP Address or Subnet"
-  echo "3) Block Outgoing Traffic to port or service"
-  echo "4) Reject Port"
-  echo "5) Back to main menu"
-  echo
-  echo -n "#: "
+echo
+echo "╔╗ ┬  ┌─┐┌─┐┬┌─  ╦═╗┬ ┬┬  ┌─┐┌─┐"
+echo "╠╩╗│  │ ││  ├┴┐  ╠╦╝│ ││  ├┤ └─┐"
+echo "╚═╝┴─┘└─┘└─┘┴ ┴  ╩╚═└─┘┴─┘└─┘└─┘"
+echo
+echo "1) Block Port"
+echo "2) Block IP Address or Subnet"
+echo "3) Block Outgoing Traffic to port or service"
+echo "4) Reject Port"
+echo "5) Back to main menu"
+echo
+echo -n "#: "
 }
 
 function _submenu4()
 {
 clear
-  echo "1) View fw rules"
-  echo "2) Delete fw rule"
-  echo "3) Back to main menu"
-  echo
-  echo -n "#: "
+echo
+echo "╔╦╗┌─┐┬  ┌─┐┌┬┐┌─┐  ╦═╗┬ ┬┬  ┌─┐┌─┐"
+echo " ║║├┤ │  ├┤  │ ├┤   ╠╦╝│ ││  ├┤ └─┐"
+echo "═╩╝└─┘┴─┘└─┘ ┴ └─┘  ╩╚═└─┘┴─┘└─┘└─┘"
+echo
+echo "1) View fw rules"
+echo "2) Delete fw rule"
+echo "3) Back to main menu"
+echo
+echo -n "#: "
 }
 
 opc=0 # sets as default value '0' to main variable
