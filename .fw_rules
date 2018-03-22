@@ -1,31 +1,212 @@
+#Name        = "my_aliases"
+#Description = "Bash alias compilation"
+#Version     = "1.0.0"
+#ReleaseDate = "2018-03-22"
+
 ####
-## Firewalling related aliases
+## Firewall rule alias for "Uncomplicated Firewall" UFW (program for managing a netfilter firewall)
 ####
 
 alias ufw_on='sudo ufw enable'
 alias ufw_off='sudo ufw disable'
+alias ufw_reload='sudo ufw reload'
 alias ufw_status='sudo ufw status numbered'
 
 ####
-## Advanced UFW control
+## Interactive UFW control
 ####
 
-# Allow connections from an IP address / subnet or host
-function ufw_allow () {
-[ "$1" != "" ] && sudo ufw allow from $1 || echo "Usage: ufw_allow [IP Address]"
+#function ver: 1.0.0
+# UFW Interactive Administration
+function ufw_interactive () { # Alias name
+function _menuPrincipal() # Main menu function
+{
+clear
+    echo "1) View fw rules"
+    echo "2) Add New fw rule"
+    echo "3) Block IP Address, Subnet, Port or Interface"
+    echo "4) Remove rules"
+    echo "5) Exit"
+    echo
+    echo -n "# "
 }
 
-# Block or deny all packets from a IP adress / subnet or host
-function ufw_block () {
-[ "$1" != "" ] && sudo ufw deny from $1 to any || echo "Usage: ufw_block [IP Address]"
+function _submenu1()
+{
+clear
+    echo "1) Show fw rules"
+    echo "2) Show fw 'allow' rules"
+    echo "3) Show fw 'deny' rules"
+    echo "4) Back to main menu"
+    echo
+    echo -n "#: "
 }
 
-# Block or deny all packets from a IP address to a specific port
-function ufw_block_port () {
-[ "$1" != "" ] && sudo ufw deny from $1 to any port $2 || echo "Usage: ufw_block_port [IP Address / Port]"
+function _submenu2()
+{
+clear
+    echo "1) Add Port (TCP)"
+    echo "2) Add Port (UDP)"
+    echo "3) Add Port Range (TCP)"
+    echo "4) Add Port Range (UDP)"
+    echo "5) Add IP Address or Subnet"
+    echo "6) Add IP Address or Subnet to specific port"
+    echo "7) Add Specific Network Interface to port"
+    echo "8) Back to main menu"
+    echo
+    echo -n "#: "
 }
 
-# Using ufw to block outgoing traffic to website, IP Address or subnet
-function ufw_out_block () {
-[ "$1" != "" ] && sudo ufw deny out from any $1 || echo "Usage: ufw_out_block [IP Address]"
+function _submenu3()
+{
+clear
+    echo "1) Block Port"
+    echo "2) Block IP Address or Subnet"
+    echo "3) Block Outgoing Traffic to port or service"
+    echo "4) Reject Port"
+    echo "5) Back to main menu"
+    echo
+    echo -n "#: "
+}
+
+function _submenu4()
+{
+clear
+    echo "1) View fw rules"
+    echo "2) Delete fw rule"
+    echo "3) Back to main menu"
+    echo
+    echo -n "#: "
+}
+
+opc=0 # sets as default value '0' to main variable
+until [ $opc -eq 5 ] # loop until "5" option isn't selected
+do
+    case $opc in
+        1)
+            opc1=0 # 1st submenu
+            until [ $opc1 -eq 4 ]
+            do
+                case $opc1 in
+                    1)
+                        sudo ufw status numbered | less
+                        _submenu1;;
+                    2)
+                        sudo ufw show added | grep allow
+                        echo
+                        read -p "Press enter to continue.."
+                         _submenu1;;
+                    3)
+                        sudo ufw show added | grep deny
+                        echo
+                        read -p "Press enter to continue.."
+                         _submenu1;;
+                   *)
+                        _submenu1;;
+                esac
+                read opc1
+            done
+            _menuPrincipal;;
+        2)
+            opc2=0 # 2nd submenu
+            until [ $opc2 -eq 8 ]
+            do
+                case $opc2 in
+                    1)
+                        read -p "Port?: " rule
+                        [ "$rule" != "" ] && sudo ufw allow $rule/tcp
+                        _submenu2;;
+                    2)
+                        read -p "Port?: " rule
+                        [ "$rule" != "" ] && sudo ufw allow $rule/udp
+                        _submenu2;;
+                    3)
+                        read -p "TCP Port Range?: " rule
+                        [ "$rule" != "" ] && sudo ufw allow $rule/tcp
+                        _submenu2;;
+                    4)
+                        read -p "UDP Port Range?: " rule
+                        [ "$rule" != "" ] && sudo ufw allow $rule/udp
+                        _submenu2;;
+                    5)
+                        read -p "IP Address or Subnet?: " rule
+                        [ "$rule" != "" ] && sudo ufw allow from $rule to any
+                        _submenu2;;
+                    6)
+                        read -p "IP Address or Subnet?: " rule
+                        read -p "Port?: " port
+                        [ "$rule" != "" ] && sudo ufw allow from $rule to any port $port
+                        _submenu2;;
+                    7)
+                        read -p "Interface?: " rule
+                        read -p "Port?: " port
+                        [ "$rule" != "" ] && sudo ufw allow in on $rule to any port $port comment 'added by my_aliases bash script'
+                        _submenu2;;
+                    *)
+                        _submenu2;;
+                esac
+                read opc2
+            done
+            _menuPrincipal;;
+
+        3)
+            opc3=0 # 3rd submenu
+            until [ $opc3 -eq 5 ]
+            do
+                case $opc3 in
+                    1)
+                        read -p "Port, Port Range?: " rule
+                        [ "$rule" != "" ] && sudo ufw deny $rule
+                        _submenu3;;
+                    2)
+                        read -p "IP Address or Subnet?: " rule
+                        [ "$rule" != "" ] && sudo ufw deny from $rule to any
+                        _submenu3;;
+                    3)
+                        read -p "IP Address or Subnet?: " rule
+                        read -p "Port?: " port
+                        [ "$rule" != "" ] && sudo ufw deny from $rule to any port $port
+                        _submenu3;;
+                    4)
+                        read -p "Port?: " port
+                        [ "$port" != "" ] && sudo ufw deny out $port
+                        _submenu3;;
+
+                    5)
+                        read -p "Porto?: " port
+                        [ "$port" != "" ] && sudo ufw reject $port
+                        _submenu3;;
+
+                    *)
+                        _submenu3;;
+                esac
+                read opc3
+            done
+            _menuPrincipal;;
+
+        4)
+            opc4=0 # 4th submenu
+            until [ $opc4 -eq 3 ]
+            do
+                case $opc4 in
+                    1)
+                        sudo ufw status numbered | less
+                        _submenu4;;
+
+                    2)
+                        read -p "Rule to delete?: " rule
+                        [ "$rule" != "" ] && sudo ufw delete $rule
+                        _submenu4;;
+                    *)
+                        _submenu4;;
+                esac
+                read opc4
+            done
+            _menuPrincipal;;
+
+        *)
+            _menuPrincipal;;
+    esac
+    read opc
+done
 }

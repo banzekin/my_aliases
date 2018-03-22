@@ -1,29 +1,36 @@
-##
-#### Main aliases
-##
+#Name        = "my_aliases"
+#Description = "Bash alias compilation"
+#Version     = "1.0.0"
+#ReleaseDate = "2018-03-22"
+
+####
+## Main alias
+####
 alias ?='man' # haha
 alias ??='info'
 alias ???='whatis'
-alias cls='clear'
+alias cls='clear' #lol
 alias show-history='history | grep -i'
 alias export-history='history -a'
 alias import-history='history -n'
 
 #
-# Files and Directories
+# Files and Directories alias
 alias count-all-files='ls | wc -l'
 alias list-all-files='ls -al --time-style=+%D | grep `date +%D`'
 alias list-files-MB='du -sch *'
 alias list-long-names='ls -lhXG'
 alias lb='lsblk'
 alias finder='find -iname'
-alias remove-m='sed -i "s/\r$//g"'
+alias remove-m='sed -i "s/\r$//g"' # Removes ^M chars from a file
 alias no-comments='grep ^[^\;]' # View configuration files without comments.
 alias no-comments#='grep ^[^#]' # View configuration files without comments.
 alias MD5-dir='find . -type f -exec md5sum {} \;'
 alias rows-example='seq 1 31 | paste -s -d "\t\t\t\n" -'
 alias rows-4='pr -T -4'
 alias rows-2='pr -T -2'
+#alias vi=vi #CHECK BETTER OPTIONS FOR OPEN VI
+alias ge=gedit
 alias svi='sudo vi'
 alias sge='sudo gedit'
 alias permission='stat -c "%a %U %G %n"' # Check permissions of a folder.
@@ -48,7 +55,7 @@ alias dic='cd ~/Work/dic/'
 alias games='cd ~/Games/'
 
 #
-# System Resources & Process aliases
+# Process and Memory info alias
 alias zombie-finder='ps aux | grep +z | grep +Z'
 alias kll='sudo kill -s 9'
 alias show-consume-mem='ps aux | sort -nrk 4 | head'
@@ -64,14 +71,14 @@ alias t10='top -n 10'
 alias t5-save='top -b -n 5 > top-5proc.txt'
 
 #
-# User(s) status aliases
+# User(s) status alias
 alias usrs-l='lslogins' # Show information about known users.
 alias usrs-l2='w -i'
 
 #
-# Mount aliases
+# Mount alias
 alias external-off='sudo umount /dev/sdb1'
-alias external-on='sudo mount /dev/sdb1 /home/banzekin/media'
+alias external-on='sudo mount /dev/sdb1 /home/$USER/media'
 alias w7-on='sudo mount /dev/sda2 /mount/windows7'
 alias w7-off='sudo umount /dev/sda2'
 alias mount-cd='sudo mount -o loop'
@@ -83,9 +90,9 @@ alias show-distro-version='cat /etc/lsb-release'
 alias restart-sound-daemon='sudo alsa force-reload'
 alias kill-lighttpd='sudo killall lighttpd'
 alias create-desktop-link='gnome-desktop-item-edit ~/Desktop --create-new'
-alias restart-xfce4='xfce4-session-logout'
+alias logoff-xfce4='xfce4-session-logout'
 alias transmission='DISPLAY=:0 exec /usr/bin/transmission-gtk &'
-alias mini-term='xterm -hold -bg black -geometry 100x27-0-0 -fg "#99CCFF" -title "Mini-term" &' # "xterm" is needed.
+alias mini-term='xterm -hold -bg black -geometry 100x27-0-0 -fg "#99CCFF" -title "Mini-term" &' # "xterm" package is needed.
 
 #
 # Aliases update
@@ -106,7 +113,7 @@ alias en-se='~/Work/tools/translate/trans -brief -s en -t sw'
 alias se-en='~/Work/tools/translate/trans -brief -s sw -t en'
 
 #
-# RECORD all activity in a text file
+# Record all activity on a terminal in a text file
 alias recterm='script ~/Work/record.txt'
 
 ##
@@ -117,7 +124,7 @@ alias shut230am='sudo shutdown -P 2:30 "The server is shutting down, please save
 alias shut330am='sudo shutdown -P 3:30 "The server is shutting down, please save your work and log off."'
 
 ##
-#### System Security Commands
+#### Security alias
 ##
 alias av-scan='sudo clamscan --infected --remove --recursive /home' # You need to install clamav.
 alias rootkit-scan='sudo rkhunter --checkall' # rkhunter is needed.
@@ -132,7 +139,7 @@ alias armor='sudo apparmor_status'
 alias gen-random-passwd='makepasswd --chars=32'
 
 ##
-#### Logging Related Aliases
+#### Logging
 ##
 alias view-syslog='lnav /var/log/syslog' # lnav package is needed.
 alias view-syslog2='head /var/log/syslog'
@@ -149,16 +156,16 @@ alias show-syslog='xterm -hold -bg black -geometry 100x27-0-0 -fg "#99CCFF" -tit
 alias show-bind9log='xterm -hold -bg black -geometry 100x27-0+0 -fg "#99CCFF" -title "BIND9 logging Terminal" -e tail -f /var/log/named/queries.log &'
 
 ##
-#### System Commands
+#### Update
 ##
 
-# Ubuntu/Debian system update aliases
+# Ubuntu/Debian system update alias
 alias update='sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y'
 alias update2='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y'
 alias apt-get='sudo apt-get'
 
 #
-# Package(s) administration commands
+# Ubuntu/Debian Package(s) administration alias
 alias show-packages='sudo apt --installed list'
 alias show-package-info='apt-cache show'
 alias show-installed-packages='apt list --installed'
@@ -168,9 +175,14 @@ alias purge-package='sudo apt-get --purge remove -y'
 #
 alias show-services-status='sudo systemctl list-unit-files'
 alias show-services-timing='sudo systemd-analyze blame'
+# GPG alias
+alias gfinger='gpg --fingerprint'
+alias encrypt='gpg --encrypt --sign --armor -r banzekin@yahoo.se"'
+alias decrypt='gpg'
+alias show-keys='gpg --list-keys'
 
 #
-# Hardware and Video information
+# Hardware and Video info
 alias show-hardware='inxi -SGADIPMnN'
 alias check-cpu-temperature='acpi -t'
 alias show-opengl-version='glxinfo | grep OpenGL' # You need to install glxinfo
@@ -179,6 +191,10 @@ alias show-display_ID-connected='xrandr -q | grep " connected"'
 alias show-ID-screen='xrandr --listmonitors'
 alias videoinfo='grep -i --color Video /var/log/Xorg.0.log'
 alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
+
+####
+## Functions
+###
 
 #### Compress and Extract files from different formats
 function tgz() {
@@ -263,7 +279,6 @@ echo "DNS Flushed!";
 ### DNS Query lookup
 function ns1 () {
 nslookup -q=any $1
-nslookup -q=soa $1
 dig -x $1
 }
 
@@ -273,7 +288,7 @@ TIMESTAMP=`date +%Y%m%d.%H%M`                                   #timestamp file 
 DEST_DIR="/home/$USER/Dropbox/Backup"                           #destination directory
 SRC_DIR="/etc /var/log /var/www/html /var/spool/cron"           #directories to backup
 FNAME="sysbackup"                                               #destination file name
-LOG="/home/$USER/Work/$FNAME-$TIMESTAMP.log"                    #log file destination
+LOG="/home/$USER/backup/$FNAME-$TIMESTAMP.log"                  #log file destination
 echo -e "Starting backup of $SRC_DIR directory" >> ${LOG}
 sudo tar -vczPf ${DEST_DIR}/${FNAME}-${TIMESTAMP}.tar.gz ${SRC_DIR} >> ${LOG}
 echo -e "Backup done of $SRC_DIR" >> ${LOG}

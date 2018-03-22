@@ -1,19 +1,50 @@
-## my_aliases - Bash Aliases Script
-*"a set of useful bash aliases and function compilation"*
+## my_aliases - Bash Alias Script
+*"a set of useful bash alias and functions compilation"*
 
-<b>You can pull requests if you have any useful aliases or functions to make things more easy.</b>
+## What do I need to use the script?
+First you need is to get installed Linux and you should use <i>BASH</i> as default shell.
 
-## How to install and use it the script 
-Open a new shell and run the installation script <i>"install.sh"</i>,
+Why BASH Shell?
+<i>Bourne Again shell</i>: Probably most advisable for beginning users while being at the same time a
+powerful tool for the advanced and professional user. This shell is a so-called superset of the Bourne shell,
+a set of add-ons and plug-ins. This means that the Bourne Again shell is compatible with the Bourne shell:
+commands that work in <i>sh</i>, also work in <i>bash</i>.
+
+## What is an alias?
+<i>Aliases</i> allow a string to be substituted for a word when it is used as the first word of a simple command.
+The shell maintains a list of aliases that may be set and unset with the alias and unalias commands.
+
+## Compatibility
+The script is compatible with any Linux distribution that uses BASH as default shell but I've made this script under
+Ubuntu Linux so if you're using another Linux distribution probably you want to make some changes in some aliases for
+example the update system aliases was made to be compatible with Debian and/or Ubuntu.
+
+## How to install the script
+a) Automatic Installation
+Open a new terminal then run the installation script file <i>"install.sh"</i>:
 
 <TT>chmod +x install.sh && ./install.sh</TT>
 
-## Manual installation
-1. Copy <i>.my_aliases</i> file to your home root folder "~/.".
+## b) Manual Installation
+If you want to install the script by yourself you should make the following steps:
 
-2. Make a directory called "<i>.my_aliases_data</i>" and place the rest of the files into it
+1. Unpack all files
+<TT><i>unzip -o bash_aliases_master.zip</i></TT>
 
-3. Then edit your <i>.bashrc</i> file and add the following text
+2. Open a new terminal and go to your home root directory, then:
+<TT><i>cd</i> or <i>cd /</i></TT>
+
+3. Copy <i>.my_aliases</i> file to your home root directory "~/.".
+<TT><i>cp .my_aliases ~/</i></TT>
+
+4. Make a directory called "<i>.my_aliases_data</i>" and place the rest of the files into it
+<TT><i>mkdir ~/.my_aliases_data</i></TT>
+<TT><i>cp .networking ~/.my_aliases_data && cp .fw_rules ~/.my_aliases_data && cp .media ~/.my_aliases_data
+cp .scantools_alias ~/.my_aliases_data && cp .banner ~/my_aliases_data</i></TT>
+
+Note: If you don't want to use the banner "welcome" login, don't copy the <i>".banner"</i> file
+
+5. Edit your <i>.bashrc</i> file and add the following text
 <code>
 
 if [ -f ~/.my_aliases ]; then
@@ -28,8 +59,8 @@ if [ -f ~/.my_aliases_data/.fw_rules ]; then
     . ~/.my_aliases_data/.fw_rules
 fi
 
-if [ -f ~/.my_aliases_data/.scanning_cmd ]; then
-    . ~/.my_aliases_data/.scanning_cmd
+if [ -f ~/.my_aliases_data/.scantools_alias ]; then
+    . ~/.my_aliases_data/.scantools_alias
 fi
 
 if [ -f ~/.my_aliases_data/.media ]; then
@@ -37,4 +68,5 @@ if [ -f ~/.my_aliases_data/.media ]; then
 fi
 
 </code>
-4. Finally reload the shell
+6. Reload the shell
+<i>source ~/.bashrc</i>

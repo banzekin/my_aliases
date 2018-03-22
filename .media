@@ -1,10 +1,19 @@
+#Name        = "my_aliases"
+#Description = "Bash alias compilation"
+#Version     = "1.0.0"
+#ReleaseDate = "2018-03-22"
+
+####
+## Media manage aliases
+####
+
 alias vid-info='ffmpeg -i -hide_banner' # Getting info from a video file
-alias play-video='ffplay $1'
+alias tplay='ffplay $1' # Play from terminal any media file (video and/or audio)
 alias webcam-vlc='vlc v4l2:///dev/video0' # Running my laptop webcam to VLC
 
-# Turn a video to "X" images
+# Turn a video to "X" image(s)
 function vid-to-images () {
-[ "$1" != "" ] && ffmpeg -i $1 image%d.jpg || echo "Usage: vid-to-images [video file]"
+[ "$vid" != "" ] && ffmpeg -i $vid image%d.jpg || echo "Usage: vid-to-images [video file]"
 }
 
 # Extract sound from a video, and save it as MP3
@@ -30,7 +39,7 @@ function vid-to-dvd () {
 # Stream a playlist in vl (vaughnlive.tv)
 ## $1 - playlist // $2 key
 function go-stream () {
-[ "$1" != "" ] && ffmpeg -f concat -safe 0 -i $1 -s 640x360 -r 25 -b:v 900k -vcodec libx264 -f flv $2 || echo "Usage: go-stream [playlist - vaughnlive key]"
+[ "$1" != "" ] && ffmpeg -f concat -safe 0 -i $1 -s 640x360 -r 25 -b:v 900k -vcodec libx264 -f flv $2 || echo "Usage: go-stream [playlist - your vaughnlive key]"
 }
 
 # Grab the desktop
@@ -38,7 +47,7 @@ function record-desktop () {
 [ "$1" != "" ] && ffmpeg -y -f alsa -i hw:0 -f x11grab -framerate 30 -video_size 1280x800 -i :0.0+0,0 -c:v libx264 -pix_fmt yuv420p -qp 0 -preset ultrafast $1 || echo "Usage: record-desktop [target file]"
 }
 
-# Capturing video from webcam and saving to a file
+# Capturing video from webcam and saving to a video file
 function record-webcam () {
-[ "$1" != "" ] && ffmpeg -f oss -i /dev/dsp -f video4linux2 -s 640x480 -i /dev/video0 $1 || echo "Usage: record-webcam [target file]"
+[ "$video_file" != "" ] && ffmpeg -f oss -i /dev/dsp -f video4linux2 -s 640x480 -i /dev/video0 $video_file || echo "Usage: record-webcam [target file]"
 }

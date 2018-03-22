@@ -1,0 +1,261 @@
+#Name        = "my_aliases"
+#Description = "Bash alias compilation"
+#Version     = "1.0.0"
+#ReleaseDate = "2018-03-22"
+
+##
+#### NMAP - Network exploration tool and security / port scanner
+##
+
+# Show host interfaces and routes
+function scan-ifaces () {
+sudo nmap --iflist
+}
+
+# Network Enumeration
+function scan-net-discover () {
+read -p "target: " target
+[ "$target" != "" ] && sudo nmap -vvv $IP || echo "Usage: scan-net-discover [IP Address / Subnet / host]"
+}
+
+# Fastest way to scan all your devices/computers for open ports
+function scan-net-discover-fast () {
+clear
+read -p "Domain/IP to Scan: " target
+read -p "File to Save: " file
+read -r -p "Do you want to enable extra verbose mode? [y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
+then
+    [ "$target" != "" ] && sudo nmap -T5 -vvv $target -oN $file
+else
+    [ "$target" != "" ] && sudo nmap -T5 $target -oN $file
+fi
+}
+
+# Find out the most commonly used TCP ports using TCP SYN Scan
+function scan-tcp-syn () {
+clear
+read -p "Domain to Scan: " target
+read -p "File to Save: " file
+[ "$target" != "" ] && sudo nmap -sS -vvv $target -oN $file
+}
+
+# Scan a host for UDP services
+function scan-udp () {
+[ "$1" != "" ] && sudo nmap -sU -vvv $1 || echo "Usage: scan-udp [target IP / host]"
+}
+
+# Show remote services (server / daemon) version numbers
+function scan-services () {
+[ "$1" != "" ] && sudo nmap -sV -vvv $1 || echo "Usage: scan-services [target IP / host]"
+}
+
+# Scan a firewall for security weakness
+function scan-firewall () {
+clear
+read -p "Domain/IP to Scan: " target
+echo ""
+read -n 1 -p "Select: (n) for NULL SCAN - (f) for TCP/FIN Scan - (x) XMA Scan (n/f/x) " ans;
+case $ans in
+    n|N)
+        [ "$target" != "" ] && sudo nmap -sN -vvv $target;;
+    f|F)
+        [ "$target" != "" ] && sudo nmap -sF -vvv $target;;
+    x|X)
+        [ "$target" != "" ] && sudo nmap -sX -vvv $target;;
+esac
+}
+
+# Scan a firewall for MAC address spoofing
+function scan-fw-mac () {
+clear
+read -p "Insert MAC Address: " mac
+read -p "Insert IP Address: " ip
+read -p "File to Save: " file
+[ "$mac" != "" ] && sudo nmap -v -sT -Pn --spoof-mac $mac $ip -oN $file -vvv
+}
+
+# User defined port scan range with stealth syn scan, T4 timing, OS and version detection
+function scan-port-range () {
+clear
+read -p "Domain/IP Address: " target
+read -p "Port Range (ex. 1-1024 .. 22,23,25,80,113): " range
+read -p "File to Save: " file
+[ "$target" != "" ] && sudo nmap -v -p $range -sV -O -sS -T4 $target -oN $file
+}
+
+# Scanning using "NSE geolocation script" a host / IP Address looking for geolocation info
+function scan-geolocation () {
+[ "$1" != "" ] && sudo nmap --traceroute --script traceroute-geolocation.nse -p 80 -vvv $1 || echo "Usage: scan-dns-bruteforce [target IP / host]"
+}
+
+# Scanning using "NSE dns-bruteforce script" a host / IP Address looking for DNS security weakness
+function scan-dns-bruteforce () {
+[ "$1" != "" ] && sudo nmap -p 80 --script dns-brute.nse -vvv $1 || echo "Usage: scan-dns-bruteforce [target IP / host]"
+}
+
+# Verbose output, runs stealth syn scan, T4 timing, OS and version detection and full port range scan
+function scan-T4-full () {
+[ "$1" != "" ] && sudo nmap -v -p 1-65535 -sV -O -sS -T4 $1 || echo "Usage: scan-T4-full [target IP / host / Subnet]"
+}
+
+# Scanning using "tor"
+function scan-wtor () {
+[ "$1" != "" ] && sudo nmap --proxy socks4://127.0.0.1:9050 -vvv $1 || echo "Usage: scan-wtor [target IP / host]"
+}
+
+# domain scanning using "NSE whois script" a host / IP Address looking for whois info
+function scan-whois () {
+[ "$1" != "" ] && sudo nmap -p 80 --script whois-domain.nse -vvv $1 || echo "Usage: scan-whois [host]"
+}
+
+# IP Address scan using "NSE whois script" a host / IP Address looking for whois info
+function scan-whois-ip () {
+[ "$1" != "" ] && sudo nmap -p 80 --script whois-ip.nse -vvv $1 || echo "Usage: scan-whois-ip [target IP Address]"
+}
+
+# SMTP scanning using "NSE smtp script" a host / IP Address looking for SMTP security weakness
+function scan-smtp () {
+[ "$1" != "" ] && sudo nmap -p 25 --script=smtp-commands.nse -vvv $1 || echo "Usage: scan-smtp [SMTP Server]"
+}
+
+function scan-mysql () {
+[ "$1" != "" ] && sudo nmap -p 3306 --script=mysql-info.nse -vvv $1 || echo "Usage: scan-mysql [MySQL Server]"
+}
+
+# Show all packets sent and received
+function scan-packet-trace () {
+[ "$1" != "" ] && sudo nmap --packet-trace -vvv $1 || echo "Usage: scan-packet-trace [target IP / host]"
+}
+
+# Full scan with OS Detection support
+function scan-OS-guest () {
+[ "$1" != "" ] && sudo nmap -sSU -p- -Pn -O --osscan-guess -vvv $1 || echo "Usage: scan-OS-guest [target IP / host]"
+}
+
+# Scans for http/https servers on port 80, 443 and pipes into Nikto for scanning
+function scan-nmap-nikto () {
+[ "$1" != "" ] && sudo nmap -p80,443 $1 -oG - | sudo /usr/bin/nikto -h - || echo "Usage: scan-nmap-nikto [LAN RANGE/MASK]"
+}
+
+##
+#### Tshark - Dump and analyze network traffic
+##
+
+# Traffic Netrowk capture into a ".pcap" file packet
+function tcap () {
+[ "$1" != "" ] && sudo tshark -i $1 -w $2.pcap || echo "Usage: t-cap [iface - target_file]"
+}
+
+# Read .pcap packets
+function rcap () {
+[ "$1" != "" ] && tshark -r $1 || echo "Usage: r-cap [file.pcap]"
+}
+
+# HTTP Analysis with Tshark
+function webcap () {
+[ "$1" != "" ] && tshark -i $1 -Y http.request -T fields -e http.host -e http.user_agent -w $2.pcap || echo "Usage: web-cap [iface - target_file]"
+}
+
+# HTTP filters in Analysis of a .pcap file
+function rweb-cap () {
+[ "$1" != "" ] && tshark -r $1 -Y http.request -T fields -e http.host -e ip.dst -e http.request.full_uri || echo "Usage: r-web-cap [file.pcap]"
+}
+
+# DNS Analysis with Tshark
+function tdns-cap () {
+[ "$1" != "" ] && tshark -i $1 -f "src port 53" -n -T fields -e dns.qry.name -e dns.resp.addr -w $2.pcap || echo "Usage: t-dns-cap [iface -target_file]"
+}
+
+# Capturing plain/text passwords
+function tpwd-cap () {
+[ "$1" != "" ] && tshark -i $1 -Y 'http.request.method == POST and tcp contains "password"' | grep password -w $2.pcap || echo "Usage: t-pwd-cap [iface -target_file]"
+}
+
+##
+##### WIRELESS alias
+##
+
+# Wireless Cracker
+alias fluxion='cd ~/Work/fluxion' # You need to get fluxion - https://github.com/FluxionNetwork/fluxion/
+alias linset='sudo /usr/sbin/linset' # You should install linset.
+#
+# Wireless bssid info
+alias show-wireless-bssid='sudo linssid' # You should install linssid.
+
+##
+#### Aircrack-ng / 802.11 WEP / WPA-PSK key cracker
+##
+
+# Set fixed MAC Address
+function mac-fixed () {
+clear
+read -p "Which interface do I use?: " iface
+if [[ "$iface" == "eth0" ]] || [[ "$iface" == "eth1" ]] || [[ "$iface" == "wlan0" ]] || [[ "$iface" == "wlan1" ]]
+then
+    read -p "Insert new MAC Address (ex. 00:11:22:33:44:55): " mac
+    if [ `echo $mac | egrep "^([0-9A-F]{2}:){5}[0-9A-F]{2}$"` ]
+then
+    echo ""
+else
+    echo "Invalid MAC."
+    return 0;
+ fi
+    [ "$iface" != "" ] && sudo ifconfig $iface down && sudo macchanger $iface --mac $mac && sudo ifconfig $iface up
+else
+cls
+    echo "Wrong interface."
+    return 0;
+fi
+}
+
+# Set random MAC Address
+function mac-dyn () {
+clear
+read -p "Which interface do I use?: " iface
+if [[ "$iface" == "eth0" ]] || [[ "$iface" == "eth1" ]] || [[ "$iface" == "wlan0" ]] || [[ "$iface" == "wlan1" ]]
+then
+[ "$iface" != "" ] && sudo ifconfig $iface down && sudo macchanger -r $iface && sudo ifconfig $iface up
+else
+cls
+    echo "Wrong interface."
+    return 0;
+fi
+}
+
+alias kill-airmon='sudo airmon-ng check kill' # You should install aircrack-ng.
+alias mon0-start='sudo airmon-ng start wlan0'
+alias mon0-stop='sudo airmon-ng stop wlan0'
+alias wifiscan='xterm -hold -bg black -geometry 100x27-0+0 -fg "#99CCFF" -title "BIND9 logging Terminal" -e sudo airodump-ng mon0 &'
+
+# Sniff wireless network
+function mon0-attack-target () {
+clear
+read -p "BSSID MAC?: " bssid
+read -p "Channel: " chan
+read -p "Logfile?: " file
+[ "$bssid" != "" ] && sudo airodump-ng --bssid $bssid --channel $chan mon0 -w $file
+}
+
+# Deauth mode
+function mon0-deauth () {
+clear
+read -p "Router MAC?: " bssid
+read -p "Client MAC: " client
+[ "$1" != "" ] && sudo aireplay-ng --deauth 20000 -a $bssid -c $client mon0 || echo "Usage: mon0-deauth [Target-MAC / Client-MAC]"
+}
+
+##
+#### Network information gathering
+##
+alias netbios-scan='sudo nbtscan -v -s :' # nbtscan package is needed.
+alias network-scan='sudo netdiscover -r' # You should install netdiscover.
+
+##
+#### Web Scan alias
+##
+alias webscan1='nikto -h' # You need to install nikto.
+alias webscan2='nikto -Cgidirs all -Format html -output scan.html -D V -h'
+alias webscan3='sudo skipfish -m 5 -L -o ~/Work/reports/website/ -b ie -B' # You should install skipfish.
+alias header='curl -I' # Get a web server header.
+alias headerc='curl -I --compress' # Find out if remote server supports gzip.

@@ -1,20 +1,27 @@
-# Connection information
+#Name        = "my_aliases"
+#Description = "Bash alias compilation"
+#Version     = "1.0.0"
+#ReleaseDate = "2018-03-22"
+
+# Connection and Ports info
 alias open-ports='sudo netstat -plunt'
 alias open-ports2='sudo netstat -tulanp'
 alias show-connections='netstat -an | grep :80 | sort'
 alias show-established-connections='sudo netstat -t -u -c | grep ESTABLISHED'
 alias show-TCP-connections='sudo lsof | grep TCP'
 alias show-services='sudo lsof | grep TCP | grep LISTEN'
+
 #
-# Routing and Ping aliases
+# Routing and Ping alias
 alias ping-10='ping -c 10'
 alias ping-100='ping -c 100'
 alias fp='fping -s -l -i 10 -p 20 -T 1 -Q 1 $1'
 alias hp3='hping3 $1 --seqnum -p 139 -S -i u1 -I wlan0' # You need to install hping3.
 alias route1='traceroute www.google.com'
 alias route2='mtr www.google.com'
+
 #
-# Network interfaces info, Performance and Monitoring aliases
+# Network interfaces info, Performance and Monitoring alias
 alias eth0-info='sudo ethtool eth0'
 alias eth0-status='dmesg | grep -i link | grep eth0'
 alias wlan0-info='sudo ethtool wlan0'
@@ -22,8 +29,9 @@ alias wlan0-status='dmesg | grep -i link | grep wlan0'
 alias eth0-promisc='sudo ifconfig eht0 promisc'
 alias wlan0-promisc='sudo ifconfig wlan0 promisc'
 alias check-promisc='dmesg | grep eth0 && dmesg | grep wlan0'
+
 #
-# Bandwidth information aliases
+# Bandwidth info alias
 alias show-bandwidth-eth0='vnstat -i eth0' # "vnstat" package is needed.
 alias show-bandwidth-graph-eth0='vnstati -s -i eth0 -o ~/vnstat_eth0.png' # You should install vnstati.
 alias show-wlan0-bandwidth='vnstat -i wlan0'
@@ -33,10 +41,12 @@ alias show-bandwidth-speed='nload' #you should install nload
 alias show-downlink-speed='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 alias show-current-net='lshw -C network'
 alias show-current-net2='iw list | less'
+
 #
 # Virtual IP's
 alias set-virtual-ip-eth0='sudo ifconfig eth0 192.168.1.10 netmask 255.255.255.0 broadcast 192.168.1.255 up'
 alias set-virtual-ip-wlan0='sudo ifconfig wlan0 192.168.2.10 netmask 255.255.255.0 broadcast 192.168.2.255 up'
+
 #
 # DNS related aliases
 alias flushdns='sudo /etc/init.d/dns-clean restart'
@@ -58,7 +68,8 @@ alias openvpn-start='sudo systemctl start openvpn.service'
 alias openvpn-stop='sudo systemctl stop openvpn.service'
 alias openvpn-status='sudo systemctl status openvpn.service'
 #
-alias sync-time='sudo ntpdate pool.ntp.org' # Sync my laptop time clock on internet. 
+alias sync-time='sudo ntpdate pool.ntp.org' # Sync my laptop time clock on internet.
+
 #
 # Web Browsing aliases
 alias mirror-site='wget --mirror --convert-links --adjust-extension --page-requisites --no-parent'
@@ -67,22 +78,26 @@ alias github='/usr/bin/firefox http://github.com/'
 alias facebook='/usr/bin/firefox https://www.facebook.com'
 alias twitter='/usr/bin/firefox https://www.twitter.com'
 alias sourceforge='/usr/bin/firefox http://sourceforge.net/'
+
 #
 # Apache2 aliases (Apache2 package is needed)
 alias apache2-start='sudo systemctl start apache2.service'
 alias apache2-stop='sudo systemctl stop apache2.service'
 alias apache2-reload='sudo systemctl reload apache2'
 alias apache2-status='sudo systemctl status apache2.service'
+
 #
 # Network Service(s) aliases
 alias restart-network-manager='sudo systemctl restart network-manager.service'
 alias restart-network-icon='killall nm-applet; nohup nm-applet &' # Useful if you have problems with the network icon in XFCE Desktop.
+
 #
 # OpenSSH aliases (SSH is needed)
 alias ssh-start='sudo systemctl start ssh.service'
 alias ssh-stop='sudo systemctl stop ssh.service'
 alias ssh-status='sudo systemctl status ssh.service'
 alias ssh-reload='sudo systemctl restart ssh.service'
+
 #
 # SMB aliases (You should install Samba)
 alias samba-start='sudo service smbd start && sudo service winbind start'
