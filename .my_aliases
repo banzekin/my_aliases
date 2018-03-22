@@ -17,9 +17,10 @@ alias import-history='history -n'
 #
 # Files and Directories alias
 alias count-all-files='ls | wc -l'
-alias list-all-files='ls -al --time-style=+%D | grep `date +%D`'
-alias list-files-MB='du -sch *'
-alias list-long-names='ls -lhXG'
+alias ls-all-files='ls -al --time-style=+%D | grep `date +%D`'
+alias ls-files-MB='du -sch *' # List all files by size.
+alias ls-long-names='ls -lhXG' # List all files with long names.
+alias ls-date='ls -lrt' # Sort files by date.
 alias lb='lsblk'
 alias finder='find -iname'
 alias remove-m='sed -i "s/\r$//g"' # Removes ^M chars from a file
@@ -29,7 +30,7 @@ alias MD5-dir='find . -type f -exec md5sum {} \;'
 alias rows-example='seq 1 31 | paste -s -d "\t\t\t\n" -'
 alias rows-4='pr -T -4'
 alias rows-2='pr -T -2'
-alias vi_help=vimtutor
+alias vi_help='vimtutor'
 alias ge=gedit
 alias svi='sudo vi'
 alias sge='sudo gedit'
@@ -56,7 +57,7 @@ alias games='cd ~/Games/'
 
 #
 # Process and Memory info alias
-alias zombie-finder='ps aux | grep +z | grep +Z'
+alias zombie-finder='ps aux | grep +z | grep +Z' # Looking for Zombie Process.
 alias kll='sudo kill -s 9'
 alias show-consume-mem='ps aux | sort -nrk 4 | head'
 alias show-proccol='ps aux | lolcat' # You need to install lolcat package.
@@ -68,7 +69,7 @@ alias disk-info='sudo fdisk -l'
 alias check-running-apps='sudo lsof -i' # Check running applications/services.
 alias CPU='prtstat $$'
 alias t10='top -n 10'
-alias t5-save='top -b -n 5 > top-5proc.txt'
+alias t5-save='top -b -n 5 > top-5proc.txt' # Record "5" iterations then export the result to a file.
 
 #
 # User(s) status alias
@@ -82,7 +83,7 @@ alias external-on='sudo mount /dev/sdb1 /home/$USER/media'
 alias w7-on='sudo mount /dev/sda2 /mount/windows7'
 alias w7-off='sudo umount /dev/sda2'
 alias mount-cd='sudo mount -o loop'
-alias make-iso-folder='mkisofs -o image.iso -R'
+alias iso-to-folder='mkisofs -o image.iso -R' # Make an ISO file from folder
 
 #
 # MISC alias
@@ -96,7 +97,7 @@ alias mini-term='xterm -hold -bg black -geometry 100x27-0-0 -fg "#99CCFF" -title
 
 #
 # Aliases update
-alias alias-update='source ~/.bashrc'
+alias alias-update='source ~/.bashrc' # Refresh the .bashrc file
 
 #
 # Youtube Downloader (you should install youtube-dl)

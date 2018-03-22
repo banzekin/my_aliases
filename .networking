@@ -4,17 +4,16 @@
 #ReleaseDate = "2018-03-22"
 
 # Connection and Ports info
-alias open-ports='sudo netstat -plunt'
-alias open-ports2='sudo netstat -tulanp'
-alias show-connections='netstat -an | grep :80 | sort'
+alias open-ports='sudo netstat -tulanp'
+alias show-connections='netstat -an | grep :80 | sort' # Shows ESTABLISHED connections over port 80/tcp.
 alias show-established-connections='sudo netstat -t -u -c | grep ESTABLISHED'
-alias show-TCP-connections='sudo lsof | grep TCP'
-alias show-services='sudo lsof | grep TCP | grep LISTEN'
+alias show-TCP-connections='sudo lsof | grep TCP' # Show all TCP connections with PID and UID.
+alias show-services='sudo lsof | grep TCP | grep LISTEN' # Show all "LISTEN" services.
 
 #
 # Routing and Ping alias
-alias ping-10='ping -c 10'
-alias ping-100='ping -c 100'
+alias ping-10='ping -c 10' # Ping 10 times.
+alias ping-100='ping -c 100' # Ping 100 times.
 alias fp='fping -s -l -i 10 -p 20 -T 1 -Q 1 $1'
 alias hp3='hping3 $1 --seqnum -p 139 -S -i u1 -I wlan0' # You need to install hping3.
 alias route1='traceroute www.google.com'
@@ -26,9 +25,9 @@ alias eth0-info='sudo ethtool eth0'
 alias eth0-status='dmesg | grep -i link | grep eth0'
 alias wlan0-info='sudo ethtool wlan0'
 alias wlan0-status='dmesg | grep -i link | grep wlan0'
-alias eth0-promisc='sudo ifconfig eht0 promisc'
-alias wlan0-promisc='sudo ifconfig wlan0 promisc'
-alias check-promisc='dmesg | grep eth0 && dmesg | grep wlan0'
+alias eth0-promisc='sudo ifconfig eth0 promisc' # Sets eth0 in promisc mode.
+alias wlan0-promisc='sudo ifconfig wlan0 promisc' # Sets wlan0 in promisc mode.
+alias check-promisc='dmesg | grep eth0 && dmesg | grep wlan0 | grep promisc' # Looking for interfaces in promiscuous mode
 
 #
 # Bandwidth info alias
@@ -49,8 +48,7 @@ alias set-virtual-ip-wlan0='sudo ifconfig wlan0 192.168.2.10 netmask 255.255.255
 
 #
 # DNS related aliases
-alias flushdns='sudo /etc/init.d/dns-clean restart'
-alias edit-dns='sudo /etc/resolv.conf'
+alias edit-resolv='sudo /etc/resolv.conf'
 alias avahi-disable='sudo systemctl disable avahi-daemon.service'
 alias avahi-enable='sudo systemctl enable avahi-daemon.service'
 alias avahi-stop='sudo systemctl stop avahi-daemon.service'
