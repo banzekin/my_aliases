@@ -21,7 +21,11 @@ example the update system aliases was made to be compatible with Debian and/or U
 
 ## How to install the script
 ## a) Automatic Installation
-Open a new terminal then run the installation script file <i>"install.sh"</i>:
+Download the script using <i>git command<i>: 
+
+<code>git clone https://github.com/banzekin/my_aliases.git</code> 
+
+Next open a new terminal then run the installation script file <i>"install.sh"</i>:
 
 <code>chmod +x install.sh && ./install.sh</code>
 
@@ -30,22 +34,18 @@ Open a new terminal then run the installation script file <i>"install.sh"</i>:
 
 If you want to install the script by yourself you should perform the following steps:
 
-1. Unpack all files (ex.)
-<code>unzip -o bash_aliases_master.zip</code>
+1. Unpack all files (in case you have not used "git" command and you have downloaded the file in .zip format)
 
-2. Open a new terminal and go to your home root directory, then:
-<code>cd or cd /</code>
-
-3. Copy <i>.my_aliases</i> file to your home root directory "~/.".
+2. Copy <i>.my_aliases</i> file to your home root directory "~/.".
 <code>cp .my_aliases ~/</code>
 
-4. Make a directory called "<i>.my_aliases_data</i>" and place the rest of files in it:
+3. Make a directory called "<i>.my_aliases_data</i>" and place the rest of files in it:
 <code><i>mkdir ~/.my_aliases_data</i></code>
 
 <code>cp .networking ~/.my_aliases_data && cp .fw_rules ~/.my_aliases_data && cp .media ~/.my_aliases_data
 cp .scantools_alias ~/.my_aliases_data && cp .banner ~/my_aliases_data</code>
 
-5. Edit your <i>.bashrc</i> file and add the following text:
+4. Edit your <i>.bashrc</i> file and add the following text:
 <code>
 
 if [ -f ~/.my_aliases ]; then
@@ -69,7 +69,7 @@ if [ -f ~/.my_aliases_data/.media ]; then
 fi
 
 </code>
-6. Reload the shell.
+5. Reload the shell.
 <i>source ~/.bashrc</i>
 
 ## Disclaimer
