@@ -33,7 +33,7 @@ Finally run the installation script file <i>"install.sh"</i>:
 
 <code>chmod +x install.sh && ./install.sh</code>
 
-<b>Note</b>: If you don't want to use the banner "welcome" login, edit your <i>".bashrc"</i> file and remove or comment '<i>cat ~/.my_aliases_data/.banner | lolcat && ddate && echo "' line, also you must delete the <i>.banner</i> file.
+<b>Note</b>: If you don't want to use the banner login, edit your <i>".bashrc"</i> file and remove or comment '<i>cat ~/.my_aliases_data/.banner | lolcat && ddate && echo "</i>' line, also you must delete the <i>.banner</i> file.
 
 ## b) Manual Installation
 
@@ -55,7 +55,7 @@ cp .scantools_alias ~/.my_aliases_data && cp .banner ~/my_aliases_data</code>
 
 4. Edit your <i>.bashrc</i> file and add the following text:
 
-<b>Note</b>: If you don't want to use the banner "welcome" login, remove the line '<i>cat ~/.my_aliases_data/.banner | lolcat && ddate && echo "</i>' line and delete the <i>.banner</i> file.
+<b>Note</b>: If you don't want to use the banner login, remove the line '<i>cat ~/.my_aliases_data/.banner | lolcat && ddate && echo "</i>' line and delete the <i>.banner</i> file.
 
 <code>
 cat ~/.my_aliases_data/.banner | lolcat && ddate && echo ""
