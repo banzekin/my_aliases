@@ -27,7 +27,7 @@ alias wlan0-info='sudo ethtool wlan0'
 alias wlan0-status='dmesg | grep -i link | grep wlan0'
 alias eth0-promisc='sudo ifconfig eth0 promisc' # Sets eth0 in promisc mode.
 alias wlan0-promisc='sudo ifconfig wlan0 promisc' # Sets wlan0 in promisc mode.
-alias check-promisc='dmesg | grep eth0 && dmesg | grep wlan0 | grep promisc' # Looking for interfaces in promiscuous mode
+alias check-promisc='dmesg | grep eth0 && dmesg | grep wlan0 | grep promisc' # Looking for interfaces in promiscuous mode.
 
 #
 # Bandwidth info alias
@@ -35,8 +35,8 @@ alias show-bandwidth-eth0='vnstat -i eth0' # "vnstat" package is needed.
 alias show-bandwidth-graph-eth0='vnstati -s -i eth0 -o ~/vnstat_eth0.png' # You should install vnstati.
 alias show-wlan0-bandwidth='vnstat -i wlan0'
 alias show-bandwidth-graph-wlan0='vnstati -s -i wlan0 -o ~/vnstat_wlan0.png'
-alias show-bandwidth='bmon' #you need to install bmon
-alias show-bandwidth-speed='nload' #you should install nload
+alias show-bandwidth='bmon' # You need to install bmon.
+alias show-bandwidth-speed='nload' # You should install nload.
 alias show-downlink-speed='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 alias show-current-net='lshw -C network'
 alias show-current-net2='iw list | less'
@@ -103,3 +103,37 @@ alias samba-stop='sudo service smbd stop && sudo service winbind stop'
 alias samba-restart='sudo service smbd restart && sudo service winbind restart'
 alias samba-status='sudo service smbd status && sudo service winbind status'
 alias samba-current-status='sudo smbstatus'
+
+#### Show current LAN and WAN IP
+function IP_WAN () {
+    IP_WAN=$(wget -qO- http://ipecho.net/plain ; echo)
+    IP_LAN=$(/sbin/ifconfig | grep Bcast | awk '{print $2}' | cut -d":" -f 2)
+        if [ $IP_WAN eq ""]; then IP_WAN="Not assigned"
+fi
+echo "WAN IP Address: $IP_WAN"
+echo "LAN IP Address:  $IP_LAN"
+}
+
+function check-port () {
+clear
+read -p "Insert Port to check: " port
+    [ "$port" != "" ] && sudo netstat -tulpn | grep $port
+}
+
+#### DNS cache flush
+function flush-dns () {
+sudo /etc/init.d/dns-clean restart
+sudo /etc/init.d/networking force-reload
+sudo /etc/init.d/nscd restart
+# If you wanted to refresh your settings you could disable and then run
+sudo service network-manager restart
+
+echo "DNS Flushed!";
+}
+
+### DNS Query lookup
+function ns1 () {
+nslookup -q=any $1
+dig -x $1
+}
+

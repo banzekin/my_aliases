@@ -50,6 +50,7 @@ source /home/$USER/.bashrc
 echo ""
 echo "====< Script Installed >===="
 echo ""
-echo "Main aliases file is in: $HOME with name '.my_aliases'."
+echo "Main aliases file copied to: $HOME with name '.my_aliases'."
 echo ""
-echo "Additional alias data is stored in $HOME with directory name '.my_aliases_data'."
+echo "Additional aliasese are stored in $HOME with directory name '.my_aliases_data'."
+

@@ -23,7 +23,7 @@ alias ls-long-names='ls -lhXG' # List all files with long names.
 alias ls-date='ls -lrt' # Sort files by date.
 alias lb='lsblk'
 alias finder='find -iname'
-alias remove-m='sed -i "s/\r$//g"' # Removes ^M chars from a file
+alias remove-m='sed -i "s/\r$//g"' # Removes ^M chars from a file.
 alias no-comments='grep ^[^\;]' # View configuration files without comments.
 alias no-comments#='grep ^[^#]' # View configuration files without comments.
 alias MD5-dir='find . -type f -exec md5sum {} \;'
@@ -67,7 +67,6 @@ alias fmem-tproc='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head' # Check top
 alias fmem-info='free -m -l -t -h'
 alias disk-info='sudo fdisk -l'
 alias check-running-apps='sudo lsof -i' # Check running applications/services.
-alias CPU='prtstat $$'
 alias t10='top -n 10'
 alias t5-save='top -b -n 5 > top-5proc.txt' # Record "5" iterations then export the result to a file.
 
@@ -128,21 +127,21 @@ alias shut330am='sudo shutdown -P 3:30 "The server is shutting down, please save
 #### Security alias
 ##
 alias av-scan='sudo clamscan --infected --remove --recursive /home' # You need to install clamav.
-alias rootkit-scan='sudo rkhunter --checkall' # rkhunter is needed.
+alias rootkit-scan='sudo rkhunter --checkall' # "rkhunter" package is needed.
 alias rootkit-update='sudo rkhunter --propupd'
 alias rootkit-check-log='sudo cat /var/log/rkhunter.log | grep -i warning'
-alias check-rootkits='sudo chkrootkit | sudo tee /var/log/chkrootkit/chkrootkit.log' # You need to install chkrootkit.
-alias update-lynis='lynis update info' # You need to install lynis.
+alias check-rootkits='sudo chkrootkit | sudo tee /var/log/chkrootkit/chkrootkit.log' # You need to install "chkrootkit".
+alias update-lynis='lynis update info' # You need to install "lynis".
 alias audit-lynis='sudo lynis audit system'
 alias show-lynis-log='sudo cat /var/log/lynis-report.dat | grep suggestion'
-alias audit-tiger='sudo tiger' # You need to install tiger.
+alias audit-tiger='sudo tiger' # You need to install "tiger".
 alias armor='sudo apparmor_status'
 alias gen-random-passwd='makepasswd --chars=32'
 
 ##
 #### Logging
 ##
-alias view-syslog='lnav /var/log/syslog' # lnav package is needed.
+alias view-syslog='lnav /var/log/syslog' # "lnav" package is needed.
 alias view-syslog2='head /var/log/syslog'
 alias view-auth-logs='lnav /var/log/auth.log'
 alias view-firewall-logs='lnav /var/log/ufw.log'
@@ -151,8 +150,8 @@ alias clean-old-logs='sudo rm /var/log/*.gz | sudo rm /var/log/*.1 | sudo rm /va
 alias view-systemctl-logs='sudo journalctl -b0 --since today'
 alias view-systemctl-logs-notice='sudo journalctl -b --since today -p 5'
 alias view-shrink-logs='sudo journalctl --vacuum-size=10M'
-alias view-logwatch='sudo logwatch | less' # You need to install logwatch.
-alias view-firewall-logs2='fwlogwatch -t -b -n -W' # You need to install fwlogwatch.
+alias view-logwatch='sudo logwatch | less' # You need to install "logwatch".
+alias view-firewall-logs2='fwlogwatch -t -b -n -W' # You need to install "fwlogwatch".
 alias show-syslog='xterm -hold -bg black -geometry 100x27-0-0 -fg "#99CCFF" -title "SYSLOG Terminal" -e tail -f /var/log/syslog &'
 alias show-bind9log='xterm -hold -bg black -geometry 100x27-0+0 -fg "#99CCFF" -title "BIND9 logging Terminal" -e tail -f /var/log/named/queries.log &'
 
@@ -184,12 +183,13 @@ alias show-keys='gpg --list-keys'
 
 #
 # Hardware and Video info
-alias show-hardware='inxi -SGADIPMnN'
-alias check-cpu-temperature='acpi -t'
-alias show-opengl-version='glxinfo | grep OpenGL' # You need to install glxinfo
-alias show-display-resolution='xrandr --query'
-alias show-display_ID-connected='xrandr -q | grep " connected"'
-alias show-ID-screen='xrandr --listmonitors'
+alias show-hardware='inxi -SGADIPMnN' # Displays hardware info.
+alias show-hardware2='lshw -short' # You should install lshw.
+alias CPU='prtstat $$' # Show CPU status.
+alias CPU-temp='acpi -t' # Show CPU temperature.
+alias display-res='xrandr --query'
+alias display-ID='xrandr -q | grep " connected"' # Show Display ID.
+alias opengl-ver='glxinfo | grep OpenGL' # You need to install glxinfo.
 alias videoinfo='grep -i --color Video /var/log/Xorg.0.log'
 alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 
@@ -250,37 +250,6 @@ find $1 -type f -exec ls -l {} \; | wc -l
 #### History of max commands used
 function hmax () {
 history | awk '{print $2}' | sort | uniq -c | sort -rn | head
-}
-
-#### Show current LAN and WAN IP
-function IP_WAN () {
-IP_WAN=$(wget -qO- http://ipecho.net/plain ; echo)
-IP_LAN=$(/sbin/ifconfig | grep Bcast | awk '{print $2}' | cut -d":" -f 2)
-
-if [ $IP_WAN eq ""]; then IP_WAN="Not assigned"
-fi
-
-echo "============================================="
-echo "WAN : $IP_WAN"
-echo "LAN:  $IP_LAN"
-echo "============================================="
-}
-
-#### DNS cache flush
-function flush-dns () {
-sudo /etc/init.d/dns-clean restart
-sudo /etc/init.d/networking force-reload
-sudo /etc/init.d/nscd restart
-# If you wanted to refresh your settings you could disable and then run
-sudo service network-manager restart
-
-echo "DNS Flushed!";
-}
-
-### DNS Query lookup
-function ns1 () {
-nslookup -q=any $1
-dig -x $1
 }
 
 #### System backup

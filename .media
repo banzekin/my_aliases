@@ -7,9 +7,9 @@
 ## Media manage aliases
 ####
 
-alias vid-info='ffmpeg -i -hide_banner' # Getting info from a video file
-alias tplay='ffplay $1' # Play from terminal any media file (video and/or audio)
-alias webcam-vlc='vlc v4l2:///dev/video0' # Running my laptop webcam to VLC
+alias vid-info='ffmpeg -i -hide_banner' # Getting info from a video file.
+alias tplay='ffplay $1' # Play from terminal any media file (video and/or audio).
+alias webcam-vlc='vlc v4l2:///dev/video0' # Running my laptop webcam to VLC.
 
 # Turn a video to "X" image(s)
 function vid-to-images () {
