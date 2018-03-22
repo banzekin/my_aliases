@@ -16,8 +16,8 @@ The shell maintains a list of aliases that may be set and unset with the alias a
 
 ## Compatibility
 The script is compatible with any Linux distribution that uses BASH as default shell but I've made this script under
-Ubuntu Linux so if you're using another Linux distribution probably you want to make some changes in some aliases for
-example the update system aliases was made to be compatible with Debian and/or Ubuntu.
+Ubuntu Linux so if you're using another distro probably you want to make some changes for example the update system 
+aliases was made to be compatible with Debian and/or Ubuntu.
 
 ## How to install the script
 ## a) Automatic Installation
@@ -25,7 +25,7 @@ Open a new terminal and download the script using <i>git command</i>:
 
 <code>git clone https://github.com/banzekin/my_aliases.git</code> 
 
-Then: switch to script's directory
+Then: 
 
 <i>cd my_aliases</i>
 
@@ -83,4 +83,4 @@ fluxion project is copyrighted by vk496.
 
 ## Disclaimer
 
-The usage of some commands and or applications such as Fluxion, nmap, TShark, linset and Aircrack-ng for attacking infrastructures without prior mutual consent could be considered an illegal activity, and is highly discouraged by its authors/developers. It is the end user's responsibility to obey all applicable local, state and federal laws. Authors assume no liability and are not responsible for any misuse or damage caused by this program.
+The usage of some commands and/or applications such as NMAP, Fluxion, TShark, linset or Aircrack-ng for attacking infrastructures without prior mutual consent could be considered an illegal activity, and is highly discouraged by its authors/developers. It is the end user's responsibility to obey all applicable local, state and federal laws. Authors assume no liability and are not responsible for any misuse or damage caused by this program.
