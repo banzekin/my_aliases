@@ -26,7 +26,8 @@ Open a new terminal then run the installation script file <i>"install.sh"</i>:
 <code>chmod +x install.sh && ./install.sh</code>
 
 ## b) Manual Installation
-Note: If you don't want to use the banner "welcome" login, skipt the <i>".banner"</i> file.
+<b>Note</b>: If you don't want to use the banner "welcome" login, skipt the <i>".banner"</i> file.
+
 If you want to install the script by yourself you should perform the following steps:
 
 1. Unpack all files (ex.)
