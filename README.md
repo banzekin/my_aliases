@@ -1,12 +1,6 @@
 ## my_aliases - Bash Alias Script
 *"a set of useful bash alias and functions compilation"*
 
-Why BASH Shell?
-<i>Bourne Again shell</i>: Probably most advisable for beginning users while being at the same time a
-powerful tool for the advanced and professional user. This shell is a so-called superset of the Bourne shell,
-a set of add-ons and plug-ins. This means that the Bourne Again shell is compatible with the Bourne shell:
-commands that work in <i>sh</i>, also work in <i>bash</i>.
-
 ## What is an alias?
 <i>Aliases</i> allow a string to be substituted for a word when it is used as the first word of a simple command.
 The shell maintains a list of aliases that may be set and unset with the alias and unalias commands.
