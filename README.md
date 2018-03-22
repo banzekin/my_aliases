@@ -78,7 +78,8 @@ fi
 
 ## Third party applications
 You can get the lastest version of fluxion here: https://fluxionnetwork.github.io/fluxion/ or https://github.com/banzekin/fluxion
-fluxion is copyrighted by vk496.
+
+fluxion project is copyrighted by vk496.
 
 ## Disclaimer
 
