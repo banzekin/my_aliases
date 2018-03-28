@@ -5,24 +5,23 @@
 <i>Aliases</i> allow a string to be substituted for a word when it is used as the first word of a simple command.
 The shell maintains a list of aliases that may be set and unset with the alias and unalias commands.
 
-## What do I need to use the script?
-A Linux distro and you should use <i>BASH</i> as default shell.
+## What do I need to use this script?
+First thing you should need to know is BASH is developed to be running under Linux environments but you can install/run BASH under Windows systems too. To use this script you should set <i>BASH</i> as default shell.
 
 ## Compatibility
-The script is compatible with any Linux distribution that supports BASH but I've made this script under
-Ubuntu so if you're working with another distro you probably need to make some changes.
+The script is compatible with any Linux distribution that supports BASH but I've made this script with Ubuntu Linux so if you're using with another distro you probably need to make some changes on it.
 
 ## How to install the script
 ## a) Automatic Installation
-Open a new terminal and download the script using <i>git command</i>: 
+a.1. Open a new terminal and download the script using <i>git command</i>: 
 
 <code>git clone https://github.com/banzekin/my_aliases.git</code> 
 
-Then: 
+a.2. Then: 
 
 <i>cd my_aliases</i>
 
-Finally run the installation script file <i>"install.sh"</i>:
+a.3. Finally run the installation script file <i>"install.sh"</i>:
 
 <code>chmod +x install.sh && ./install.sh</code>
 
@@ -30,7 +29,7 @@ Finally run the installation script file <i>"install.sh"</i>:
 
 ## b) Manual Installation
 
-If you want to install the script by yourself you should perform the following steps:
+If you want to install the script by yourself, perform the following steps:
 
 1. Unpack all files (in case you have not used "git" command and you have downloaded the file in .zip format)
 
@@ -80,4 +79,4 @@ fi
 
 ## Disclaimer
 
-The usage of some commands and/or applications such as Fluxion, TShark, NMAP, linset or Aircrack-ng for attacking third party infrastructures without prior mutual consent could be considered an illegal activity, and is highly discouraged by the author of the script. It is the end user's responsibility to obey all applicable local, state and federal laws. The Author of the script and assume no liability and are not responsible for any misuse or damage caused by this program. For additional information see  http://contributor-covenant.org/version/1/4 CODE OF CONDUCT.
+The usage of some commands and/or applications for attacking third party infrastructures without prior mutual consent could be considered an illegal activity, and is highly discouraged by the author of the script. It is the end user's responsibility to obey all applicable local, state and federal laws. The Author of the script assume no liability and are not responsible for any misuse or damage caused by this program. For additional information see  http://contributor-covenant.org/version/1/4 CODE OF CONDUCT.
